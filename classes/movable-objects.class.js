@@ -1,5 +1,6 @@
 class MovableObject {
-  
+    height = 50;
+    width = 50;
     img;
 
     
@@ -10,6 +11,6 @@ class MovableObject {
     }
 
     moveRight() {
-        console.log('Caracter is moving right', this);
+        
     }
 }
