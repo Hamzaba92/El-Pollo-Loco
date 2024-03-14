@@ -1,46 +1,7 @@
 class World {
 
     character = new Character();
-
-
-    enemies = [
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-    ];
-
-    clouds = [
-        new Cloud()
-    ];
-
-    backgroundObjects = [
-
-        new BackgroundObjects('img/5_background/layers/air.png', -979, 0),
-        new BackgroundObjects('img/5_background/layers/3_third_layer/2.png', -979, 0),
-        new BackgroundObjects('img/5_background/layers/2_second_layer/2.png', -979, 0),
-        new BackgroundObjects('img/5_background/layers/1_first_layer/1.png', -979, 0),
-
-
-        new BackgroundObjects('img/5_background/layers/air.png', 0, 0),
-        new BackgroundObjects('img/5_background/layers/3_third_layer/1.png', 0, 0),
-        new BackgroundObjects('img/5_background/layers/2_second_layer/1.png', 0, 0),
-        new BackgroundObjects('img/5_background/layers/1_first_layer/2.png', 0, 0),
-
-
-        new BackgroundObjects('img/5_background/layers/air.png', 979, 0),
-        new BackgroundObjects('img/5_background/layers/3_third_layer/2.png', 979, 0),
-        new BackgroundObjects('img/5_background/layers/2_second_layer/2.png', 979, 0),
-        new BackgroundObjects('img/5_background/layers/1_first_layer/1.png', 979, 0),
-
-
-        new BackgroundObjects('img/5_background/layers/air.png', 979*2, 0),
-        new BackgroundObjects('img/5_background/layers/3_third_layer/1.png', 979*2, 0),
-        new BackgroundObjects('img/5_background/layers/2_second_layer/1.png', 979*2, 0),
-        new BackgroundObjects('img/5_background/layers/1_first_layer/2.png', 979*2, 0),
-        
-
-
-    ]
+    level = level1;
 
     ctx;
     canvas;
@@ -66,10 +27,10 @@ class World {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMapp(this.backgroundObjects);
+        this.addObjectsToMapp(this.level.backgroundObjects);
         this.addToMapp(this.character);
-        this.addObjectsToMapp(this.enemies);
-        this.addObjectsToMapp(this.clouds);
+        this.addObjectsToMapp(this.level.enemies);
+        this.addObjectsToMapp(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
 
 
