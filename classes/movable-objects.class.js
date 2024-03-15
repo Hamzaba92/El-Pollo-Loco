@@ -8,6 +8,7 @@ class MovableObject {
     otherDirection = false;
     speedY = 0;
     accelaration = 1;
+    energy = 100;
 
     applyGravity() {
         setInterval(() => {
@@ -20,6 +21,16 @@ class MovableObject {
 
     isAboveGround() {
         return this.y < 205;
+    }
+
+    drawFrame(ctx) {
+        if (this instanceof Character || this instanceof Chicken) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
     }
 
 
@@ -44,11 +55,29 @@ class MovableObject {
 
     }
 
+    moveRight() {
+        this.x += this.speed;
+        this.otherDirection = false;
+
+    }
+
 
     moveLeft() {
         setInterval(() => {
             this.x -= this.speed;
         }, 60);
+    }
+
+    jump() {
+        this.speedY = 18;
+    }
+
+
+    isColliding(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
     }
 
 
