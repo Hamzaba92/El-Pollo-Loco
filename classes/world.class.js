@@ -2,7 +2,6 @@ class World {
 
     character = new Character();
     level = level1;
-
     ctx;
     canvas;
     keyboard;
@@ -23,7 +22,7 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
-                    this.character.energy -= 2;
+                    this.character.hit();
                     console.log('is colliding, energy =', this.character.energy)
                 }
             });
@@ -33,7 +32,6 @@ class World {
     setWorld() {
         this.character.world = this;
     }
-
 
     draw() {
 
@@ -52,6 +50,8 @@ class World {
         });
 
     }
+
+
 
     addObjectsToMapp(objects) {
         objects.forEach(o => {
