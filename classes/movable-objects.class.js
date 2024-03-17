@@ -1,10 +1,8 @@
-class MovableObject {
-    height = 50;
-    width = 50;
-    img;
-    imageCache = {};
+class MovableObject extends DrawableObjects {
+    
+   
     speed = 0.15;
-    currentImage = 0;
+    
     otherDirection = false;
     speedY = 0;
     accelaration = 1;
@@ -36,36 +34,16 @@ class MovableObject {
     isHurt(){
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
-        return timepassed < 1;
+        return timepassed < 0.5;
     }
 
     isAboveGround() {
         return this.y < 205;
     }
 
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
+    
 
-
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-    loadImages(iterieren) {
-        iterieren.forEach(path => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-    }
+  
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
@@ -74,6 +52,8 @@ class MovableObject {
         this.currentImage++;
 
     }
+
+    
 
     moveRight() {
         this.x += this.speed;
