@@ -2,8 +2,16 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Zabras';
+    font-size: 38px;
+    letter-spacing: 6px;
 }
 
 canvas{
     background-color: black;
+ }
+
+ @font-face {
+    font-family: 'Zabras';
+    src: url(/fonts/Zabars.ttf);
  }
