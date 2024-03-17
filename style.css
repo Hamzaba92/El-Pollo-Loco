@@ -1,17 +1,26 @@
-body{
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: 'Zabras';
-    font-size: 38px;
-    letter-spacing: 6px;
+    font-size: 42px;
+    background-image: url(./img_design/8.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
 }
 
-canvas{
-    background-color: black;
- }
+h1{
+    letter-spacing: 7px;
+    text-shadow: 3px 6px 2px rgba(0, 0, 0, 0.5);
+}
 
- @font-face {
+canvas {
+    background-color: black;
+}
+
+@font-face {
     font-family: 'Zabras';
     src: url(/fonts/Zabars.ttf);
- }
+}
