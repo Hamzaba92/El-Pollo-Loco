@@ -1,11 +1,11 @@
 class MovableObject extends DrawableObjects {
-    
-   
+
+
     speed = 0.15;
-    
+
     otherDirection = false;
     speedY = 0;
-    accelaration = 1;
+    accelaration = 2;
     energy = 100;
     lastHit = 0;
 
@@ -15,50 +15,45 @@ class MovableObject extends DrawableObjects {
                 this.y -= this.speedY;
                 this.speedY -= this.accelaration;
             }
-        }, 1000 / 60);
+        }, 1000 / 39);
     }
 
-    hit(){
+    hit() {
         this.energy -= 2;
-        if(this.energy < 0){
+        if (this.energy < 0) {
             this.energy = 0;
-        }else {
+        } else {
             this.lastHit = new Date().getTime();
         }
     }
 
-    isDead(){
+    isDead() {
         return this.energy == 0;
     }
 
-    isHurt(){
+    isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
-        return timepassed < 0.5;
+        return timepassed < 0.4;
     }
 
     isAboveGround() {
         return this.y < 205;
     }
 
-    
-
-  
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
+   }
 
-    }
 
-    
 
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
-
     }
 
 
@@ -69,7 +64,7 @@ class MovableObject extends DrawableObjects {
     }
 
     jump() {
-        this.speedY = 18;
+        this.speedY = 30;
     }
 
 

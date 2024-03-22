@@ -5,7 +5,7 @@ class Character extends MovableObject {
     height = 235;
     width = 130;
     img;
-    speed = 5;
+    speed = 5.5;
 
 
 
@@ -100,7 +100,7 @@ class Character extends MovableObject {
                 };
             }
 
-        }, 70);
+        }, 72.3);
     }
 
 }
