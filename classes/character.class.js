@@ -51,6 +51,7 @@ class Character extends MovableObject {
 
     currentImage = 0;
     WALKING_SOUND = new Audio('audio/walking_pepe.mp3');
+    JUMPING_SOUND = new Audio('audio/pepe_jump.mp3')
 
     constructor() {
         super().loadImage('../img/2_character_pepe/1_idle/idle/I-2.png');
@@ -94,13 +95,17 @@ class Character extends MovableObject {
             }
              else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING)
+                if (!this.jumpSoundPlayed) {
+                    this.JUMPING_SOUND.play();
+                    this.jumpSoundPlayed = true;}
             } else {
+                this.jumpSoundPlayed = false;
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
                 };
             }
 
-        }, 72.3);
+        }, 62.36);
     }
 
 }
