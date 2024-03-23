@@ -29,6 +29,7 @@
     <script src="classes/endboss.class.js"></script>
     <script src="classes/backgroundobjects.class.js"></script>
     <script src="levels/level1.js"></script>
+    <script src="js/sounds.js"></script>
 
 
     <script src="js/game.js"></script>
@@ -42,9 +43,15 @@
 
     <h1>El Pollo Loco</h1>
 
-    <canvas id="canvas" width="980" height="480"></canvas>
+    <section>
+        <div id="bgr_sound_btn">
+            <img id="toggle_sound_btn" src="./img/sound_mute.png" alt="Toggle Sound" onclick="playBackgroundMusic()">
+        </div>
+      <canvas id="canvas" width="980" height="480"></canvas>  
+    </section>
+    
 
-    </canvas>
+    
 
 </body>
 

@@ -9,6 +9,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     margin: 0;
+    
 }
 
 h1{
@@ -20,6 +21,20 @@ canvas {
     background-color: black;
     border: solid 3px grey;
     display: block;
+}
+
+#bgr_sound_btn{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#bgr_sound_btn img:hover{
+    cursor: pointer;
+}
+
+#bgr_sound_btn img{
+    height: 46px;
+    width: 46px;
 }
 
 @font-face {
