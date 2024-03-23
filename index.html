@@ -43,15 +43,24 @@
 
     <h1>El Pollo Loco</h1>
 
-    <section>
-        <div id="bgr_sound_btn">
-            <img id="toggle_sound_btn" src="./img/sound_mute.png" alt="Toggle Sound" onclick="playBackgroundMusic()">
-        </div>
-      <canvas id="canvas" width="980" height="480"></canvas>  
-    </section>
-    
 
-    
+    <section id="game_container">
+        <div class="overcontainer">
+            <div class="icons-above-canvas">
+                <img id="toggle_sound_btn" src="./img/sound_mute.png" alt="Toggle Sound"
+                    onclick="playBackgroundMusic()">
+                <img id="fullscreen" onclick="toggleFullScreen()" src="./img/fullscreen_icon.png">
+            </div>
+
+            <div>
+
+                <canvas id="canvas" width="980" height="480"></canvas>
+
+    </section>
+
+
+
+
 
 </body>
 
