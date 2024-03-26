@@ -32,6 +32,10 @@ window.addEventListener('keydown', (e) => {
         keyboard.SPACE = true;
     }
 
+    if (e.keyCode == 68) {
+        keyboard.D = true;
+    }
+
 
 
 });
@@ -57,6 +61,11 @@ window.addEventListener('keyup', (e) => {
         keyboard.SPACE = false;
     }
 
+    if (e.keyCode == 68) {
+        keyboard.D = false;
+    }
+
+
 
 })
 
@@ -81,33 +90,42 @@ function playBackgroundMusic() {
 
 
 
-//Fullscreen
+
+
+
 canvas = document.getElementById('canvas');
 
-const isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
-    (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
-    (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
-    (document.msFullscreenElement && document.msFullscreenElement !== null);
+function toggleFullScreen() {
+    if (isInFullScreen()) {
+        exitFullscreen();
+    } else {
+        enterFullscreen();
+    }
+}
 
+function isInFullScreen() {
+    return document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement;
+}
 
-function toggleFullScreen(){
-    if(canvas.RequestFullScreen){
-        canvas.RequestFullScreen();
-    }else if(canvas.webkitRequestFullScreen){
+function enterFullscreen() {
+    if (canvas.requestFullscreen) {
+        canvas.requestFullscreen();
+    } else if (canvas.webkitRequestFullScreen) {
         canvas.webkitRequestFullScreen();
-    }else if(canvas.mozRequestFullScreen){
+    } else if (canvas.mozRequestFullScreen) {
         canvas.mozRequestFullScreen();
-    }else if(canvas.msRequestFullscreen){
+    } else if (canvas.msRequestFullscreen) {
         canvas.msRequestFullscreen();
-    }else{
-        
-        alert("This browser doesn't supporter fullscreen");
+    } else {
+        alert("This browser doesn't support fullscreen");
     }
     canvas.style.border = 'none';
 }
 
-// Exit fullscreen
-function exitfullscreen(){
+function exitFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
@@ -116,7 +134,21 @@ function exitfullscreen(){
         document.mozCancelFullScreen();
     } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
-    }else{
+    } else {
         alert("Exit fullscreen doesn't work");
+    }
+}
+
+// Event-Listener für fullscreenchange
+document.addEventListener('fullscreenchange', fullscreenChange);
+document.addEventListener('webkitfullscreenchange', fullscreenChange);
+document.addEventListener('mozfullscreenchange', fullscreenChange);
+document.addEventListener('MSFullscreenChange', fullscreenChange);
+
+function fullscreenChange() {
+    if (!isInFullScreen()) {
+        canvas.style.border = "solid 3px grey";
+    } else {
+        canvas.style.border = 'none';
     }
 }
