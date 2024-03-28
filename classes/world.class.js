@@ -8,6 +8,7 @@ class World {
     camera_x = 0;
     statusbar = new Statusbar();
     bottleStatusbar = new StatusbarBottle();
+    coinStatusbar = new StatusbarCoins();
     throwableObject = [new throwableObject()];
 
 
@@ -66,7 +67,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         this.addToMapp(this.statusbar);
         this.addToMapp(this.bottleStatusbar);
-
+        this.addToMapp(this.coinStatusbar);
 
 
         this.ctx.translate(this.camera_x, 0);
