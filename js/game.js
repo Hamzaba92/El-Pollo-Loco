@@ -36,8 +36,6 @@ window.addEventListener('keydown', (e) => {
         keyboard.D = true;
     }
 
-
-
 });
 
 window.addEventListener('keyup', (e) => {
@@ -65,8 +63,6 @@ window.addEventListener('keyup', (e) => {
         keyboard.D = false;
     }
 
-
-
 })
 
 
@@ -87,10 +83,6 @@ function playBackgroundMusic() {
 
     toggle = !toggle;
 }
-
-
-
-
 
 
 canvas = document.getElementById('canvas');

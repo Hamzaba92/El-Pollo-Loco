@@ -2,7 +2,8 @@
 let soundActive = false;
 
 
-BACKGROUND_SOUND = new Audio('audio/pepe_background_sound2.mp3');
+let BACKGROUND_SOUND = new Audio('audio/pepe_background_sound2.mp3');
+
 
 
 

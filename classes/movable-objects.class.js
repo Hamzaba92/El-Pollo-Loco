@@ -2,7 +2,6 @@ class MovableObject extends DrawableObjects {
 
 
     speed = 0.15;
-
     otherDirection = false;
     speedY = 0;
     accelaration = 2;
@@ -69,7 +68,7 @@ class MovableObject extends DrawableObjects {
 
     jump() {
         this.speedY = 30;
-        
+        this.idleTime = new Date().getTime();
     }
 
 
