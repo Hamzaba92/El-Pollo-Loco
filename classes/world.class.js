@@ -9,6 +9,7 @@ class World {
     statusbar = new Statusbar();
     bottleStatusbar = new StatusbarBottle();
     coinStatusbar = new StatusbarCoins();
+    endBossStatusbar = new endBossStatusbar();
     throwableObject = [new throwableObject()];
 
 
@@ -68,6 +69,7 @@ class World {
         this.addToMapp(this.statusbar);
         this.addToMapp(this.bottleStatusbar);
         this.addToMapp(this.coinStatusbar);
+        this.addToMapp(this.endBossStatusbar);
 
 
         this.ctx.translate(this.camera_x, 0);
