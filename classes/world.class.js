@@ -31,8 +31,10 @@ class World {
 
     checkthrowableObject() {
         if (this.keyboard.D) {
+            
             let bottle = new throwableObject(this.character.x + 60, this.character.y + 70);
             this.throwableObject.push(bottle);
+            this.idleTime = new Date().getTime();
         }
     }
 
@@ -60,10 +62,10 @@ class World {
         this.addObjectsToMapp(this.throwableObject);
         this.addObjectsToMapp(this.level.enemies);
         this.addObjectsToMapp(this.level.clouds);
-        //this.addToMapp(this.bottleStatusbar);
+
         this.ctx.translate(-this.camera_x, 0);
         this.addToMapp(this.statusbar);
-       
+        this.addToMapp(this.bottleStatusbar);
 
 
 
