@@ -16,7 +16,7 @@ class endBossStatusbar extends MovableObject{
         super();
         this.loadImages(this.IMAGES_ENDBOSS);
         this.x = 743;
-        this.y = 0;
+        this.y = 10;
         this.height = 60;
         this.width = 200;
         this.setPercentage(150);
