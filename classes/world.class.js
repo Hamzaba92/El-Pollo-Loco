@@ -65,6 +65,7 @@ class World {
         this.addObjectsToMapp(this.level.enemies);
         this.addObjectsToMapp(this.level.clouds);
         this.addObjectsToMapp(this.level.coin);
+        this.addObjectsToMapp(this.level.bottle)
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMapp(this.statusbar);

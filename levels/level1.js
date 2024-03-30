@@ -1,13 +1,15 @@
 const level1 = new Level(
 
-    [
 
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new littleChickens(309),
-        new littleChickens(400),
-        new littleChickens(750),
+    [
+        new Chicken(1000),
+        new Chicken(1500),
+        new Chicken(2600),
+        new Chicken(3000),
+        new Chicken(3500),
+        new littleChickens(700),
+        new littleChickens(1200),
+        new littleChickens(1600),
         new Endboss()
 
     ],
@@ -15,7 +17,8 @@ const level1 = new Level(
 
     [
         new Cloud('img/5_background/layers/4_clouds/1.png', 300, 0),
-        new Cloud('img/5_background/layers/4_clouds/2.png', 1750, 0)
+        new Cloud('img/5_background/layers/4_clouds/2.png', 1750, 0),
+        new Cloud('img/5_background/layers/4_clouds/1.png', 3500, 0),
     ],
 
 
@@ -44,6 +47,18 @@ const level1 = new Level(
         new BackgroundObjects('img/5_background/layers/2_second_layer/1.png', 979 * 2, 0),
         new BackgroundObjects('img/5_background/layers/1_first_layer/2.png', 979 * 2, 0),
 
+
+        new BackgroundObjects('img/5_background/layers/air.png', 979 * 3, 0),
+        new BackgroundObjects('img/5_background/layers/3_third_layer/2.png', 979 * 3, 0),
+        new BackgroundObjects('img/5_background/layers/2_second_layer/2.png', 979 * 3, 0),
+        new BackgroundObjects('img/5_background/layers/1_first_layer/1.png', 979 * 3, 0),
+
+
+        new BackgroundObjects('img/5_background/layers/air.png', 979 * 4, 0),
+        new BackgroundObjects('img/5_background/layers/3_third_layer/1.png', 979 * 4, 0),
+        new BackgroundObjects('img/5_background/layers/2_second_layer/1.png', 979 * 4, 0),
+        new BackgroundObjects('img/5_background/layers/1_first_layer/2.png', 979 * 4 , 0),
+
     ],
 
     [
@@ -56,7 +71,23 @@ const level1 = new Level(
         new Coins(2800),
         new Coins(3900),
         new Coins(3800)
-    ]
+    ],
+
+    [
+        new SalsaBottles(300),
+        new SalsaBottles(600),
+        new SalsaBottles(800),
+        new SalsaBottles(900),
+        new SalsaBottles(1200),
+        new SalsaBottles(1500),
+        new SalsaBottles(2200),
+        new SalsaBottles(2400),
+        new SalsaBottles(3300),
+        new SalsaBottles(3500),
+        new SalsaBottles(4000)
+    ],
+
+
 
 
 

@@ -21,7 +21,7 @@ class littleChickens extends Chicken {
         this.loadImages(this.LITTLE_CHICKENS);
         this.loadImages(this.LITTLE_CHICKENS_DEAD);
         this.x = x;
-        this.speed = 0.10 + Math.random() * 0.25;
+        this.speed = 0.05 + Math.random() * 0.10;
         this.animate();
 
     }
@@ -32,13 +32,13 @@ class littleChickens extends Chicken {
             if (!this.isDead) {
                 this.moveLeft();
             }
-        }, 2000);
+        }, 2500);
 
         setInterval(() => {
             if (!this.isDead) {
                 this.playAnimation(this.LITTLE_CHICKENS);
             }
-        }, 200);
+        }, 150);
        
 
     }
