@@ -27,12 +27,10 @@ class SalsaBottles extends MovableObject {
 
 
     bottlesRotate() {
-
         setInterval(() => {
-            this.currentImageIndex = (this.currentImageIndex + 1) % this.IMAGE_SALSABOTTLES_ONGROUND.length;
-            this.loadImage(this.IMAGE_SALSABOTTLES_ONGROUND[this.currentImageIndex]);
+            this.playAnimation(this.IMAGE_SALSABOTTLES_ONGROUND)
         }, 300);
-
+ 
     }
 
 

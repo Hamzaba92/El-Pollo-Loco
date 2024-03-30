@@ -11,6 +11,7 @@ class World {
     coinStatusbar = new StatusbarCoins();
     endBossStatusbar = new endBossStatusbar();
     throwableObject = [new throwableObject()];
+    splashHeight = 368;
 
 
 
@@ -27,13 +28,18 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkthrowableObject();
+            this.checkCollisionsWithGround();
         }, 200);
+
+        setInterval(()=>{
+            this.checkCollisionsWithGround();
+        }, 40);
 
     }
 
     checkthrowableObject() {
         if (this.keyboard.D) {
-            
+
             let bottle = new throwableObject(this.character.x + 60, this.character.y + 70);
             this.throwableObject.push(bottle);
             this.idleTime = new Date().getTime();
@@ -46,6 +52,18 @@ class World {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.energy)//function damit die statusbar abnimmt
+            }
+        });
+    }
+
+
+    checkCollisionsWithGround() {
+        this.throwableObject.forEach((throwableObject, index) => {
+            if (throwableObject.y > this.splashHeight && !throwableObject.isBreaking) {
+                throwableObject.breakAndSplash();
+            }
+            if (throwableObject.animationFinished()) {
+                this.throwableObject.splice(index, 1);
             }
         });
     }
@@ -65,7 +83,7 @@ class World {
         this.addObjectsToMapp(this.level.enemies);
         this.addObjectsToMapp(this.level.clouds);
         this.addObjectsToMapp(this.level.coin);
-        this.addObjectsToMapp(this.level.bottle)
+        this.addObjectsToMapp(this.level.bottle);
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMapp(this.statusbar);
@@ -119,6 +137,9 @@ class World {
         mo.x = mo.x * -1;
     }
 
+
+
+   
 }
 
 
