@@ -10,9 +10,10 @@ class World {
     bottleStatusbar = new StatusbarBottle();
     coinStatusbar = new StatusbarCoins();
     endBossStatusbar = new endBossStatusbar();
-    throwableObject = [new throwableObject()];
+    throwableObject = [new throwableObject];
     splashHeight = 368;
-
+    collectedBottles = 0;
+    isShooted = false;
 
 
     constructor(canvas, keyboard) {
@@ -28,12 +29,14 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkthrowableObject();
-            this.checkCollisionsWithGround();
         }, 200);
 
         setInterval(()=>{
             this.checkCollisionsWithGround();
+            this.checkCollisionsWithBottles()
         }, 40);
+            
+        
 
     }
 
@@ -67,6 +70,43 @@ class World {
             }
         });
     }
+
+    checkCollisionsWithBottles() {
+        this.level.bottle.forEach((bottle, index) => {
+            if (this.character.isColliding(bottle) && this.collectedBottles < 12) {
+                this.collectedBottles++;
+                this.level.bottle.splice(index, 1);
+                this.bottleStatusbar.setPercentage(this.collectedBottles * 10);
+                playAudio(COLLECTED_BOTTLE);
+            }
+        });
+    }
+
+
+    checkThrowableObjects() {
+        if (this.keyboard.D && this.collectedBottles > 0) {
+            if (this.isShooted == false) {
+                this.isShooted = true;
+                setTimeout(() => {
+                    this.isShooted = false;
+                }, 2000);
+
+                let throwableObject = new ThrowableObject(this.character.x, this.character.y, this.character.otherDirection);
+                this.throwableObjects.push(throwableObject);
+                this.lastThrown = Date.now();
+                this.collectedBottles--;
+                this.bottleBar.setPercentage(this.collectedBottles * 20);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
 
 
     setWorld() {
@@ -139,7 +179,7 @@ class World {
 
 
 
-   
+
 }
 
 

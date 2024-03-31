@@ -84,7 +84,8 @@ const level1 = new Level(
         new SalsaBottles(2400),
         new SalsaBottles(3300),
         new SalsaBottles(3500),
-        new SalsaBottles(4000)
+        new SalsaBottles(4000),
+        new SalsaBottles(4100)
     ],
 
 

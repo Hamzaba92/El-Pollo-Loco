@@ -24,18 +24,34 @@ class StatusbarBottle extends DrawableObjects {
         
     }
 
-
+    collectBottle() {
+        this.bottleAmount++;
+        if (this.bottleAmount > 12) {
+            this.bottleAmount = 12;
+            console.log('Bottle amount limited to 12');
+        }
+        this.updatePercentage();
+    }
 
     setPercentage(percentage) {
         this.percentage = percentage;
+        console.log(`Setting percentage: ${percentage}`);
         let path = this.IMAGES_BOTTLES[this.resolveImageIndex(percentage)];
         this.img = this.imageCache[path];
     }
 
-
-    resolveImageIndex() {
-        return Math.min(Math.floor(this.percentage / 20), 5);
+    updatePercentage() {
+        this.percentage = this.bottleAmount * 20;
+        console.log(`Updating percentage: ${this.percentage}`);
+        this.setPercentage(this.percentage);
     }
+
+      resolveImageIndex() {
+        return Math.min(Math.floor(this.percentage / 20), 12);
+        
+    }
+
+   
 
 
 
