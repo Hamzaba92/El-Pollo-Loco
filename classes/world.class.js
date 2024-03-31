@@ -13,7 +13,6 @@ class World {
     throwableObject = [new throwableObject];
     splashHeight = 368;
     collectedBottles = 0;
-    isShooted = false;
 
 
     constructor(canvas, keyboard) {
@@ -28,27 +27,27 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.checkthrowableObject();
+            this.UpdateThrowObjects();
         }, 200);
 
         setInterval(()=>{
             this.checkCollisionsWithGround();
             this.checkCollisionsWithBottles()
-        }, 40);
             
-        
+        }, 40);
 
     }
 
-    checkthrowableObject() {
-        if (this.keyboard.D) {
-
+    
+    UpdateThrowObjects() {
+        if (this.keyboard.D && this.collectedBottles > 0) {
+            
             let bottle = new throwableObject(this.character.x + 60, this.character.y + 70);
             this.throwableObject.push(bottle);
-            this.idleTime = new Date().getTime();
+            this.bottleStatusbar.setPercentage(this.collectedBottles * 10);
+            this.collectedBottles--;
         }
     }
-
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -73,7 +72,7 @@ class World {
 
     checkCollisionsWithBottles() {
         this.level.bottle.forEach((bottle, index) => {
-            if (this.character.isColliding(bottle) && this.collectedBottles < 12) {
+            if (this.character.isColliding(bottle) && this.collectedBottles < 13) {
                 this.collectedBottles++;
                 this.level.bottle.splice(index, 1);
                 this.bottleStatusbar.setPercentage(this.collectedBottles * 10);
@@ -83,22 +82,6 @@ class World {
     }
 
 
-    checkThrowableObjects() {
-        if (this.keyboard.D && this.collectedBottles > 0) {
-            if (this.isShooted == false) {
-                this.isShooted = true;
-                setTimeout(() => {
-                    this.isShooted = false;
-                }, 2000);
-
-                let throwableObject = new ThrowableObject(this.character.x, this.character.y, this.character.otherDirection);
-                this.throwableObjects.push(throwableObject);
-                this.lastThrown = Date.now();
-                this.collectedBottles--;
-                this.bottleBar.setPercentage(this.collectedBottles * 20);
-            }
-        }
-    }
 
 
 

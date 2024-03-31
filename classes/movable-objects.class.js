@@ -8,6 +8,8 @@ class MovableObject extends DrawableObjects {
     energy = 100;
     lastHit = 0;
     offset;
+    lastShoot;
+    sleeping = true;
 
     applyGravity() {
         setInterval(() => {
@@ -37,11 +39,12 @@ class MovableObject extends DrawableObjects {
         return timepassed < 0.4;
     }
 
+  
     isAboveGround() {
-       if(this instanceof throwableObject){
+        if (this instanceof throwableObject) {
             return true;
-        }else{
-        return this.y < 205;
+        } else {
+            return this.y < 205;
         }
     }
 
@@ -51,7 +54,7 @@ class MovableObject extends DrawableObjects {
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-   }
+    }
 
 
 

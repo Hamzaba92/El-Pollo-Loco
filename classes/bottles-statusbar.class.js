@@ -28,7 +28,6 @@ class StatusbarBottle extends DrawableObjects {
         this.bottleAmount++;
         if (this.bottleAmount > 12) {
             this.bottleAmount = 12;
-            console.log('Bottle amount limited to 12');
         }
         this.updatePercentage();
     }
@@ -41,7 +40,7 @@ class StatusbarBottle extends DrawableObjects {
     }
 
     updatePercentage() {
-        this.percentage = this.bottleAmount * 20;
+        this.percentage = this.bottleAmount * 10;
         console.log(`Updating percentage: ${this.percentage}`);
         this.setPercentage(this.percentage);
     }

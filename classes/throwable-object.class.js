@@ -2,7 +2,6 @@ class throwableObject extends MovableObject {
 
     character;
     isBreaking = false;
-    deletable = false;
     isShooted = false;
 
     SALSA_BOTTLES_IN_THE_AIR = [

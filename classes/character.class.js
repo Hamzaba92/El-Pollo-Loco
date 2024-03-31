@@ -132,8 +132,13 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_WALKING);
                 this.idleTime = currentTime;
             } else if (timeSinceLastMove > 5000) {
-                this.playAnimation(this.IMAGES_SLEEPING);
-            } else if (!this.isAboveGround()) {
+                if (this.world.keyboard.D) {
+                    this.playAnimation(this.IMAGES_IDLE);
+                    this.idleTime = currentTime; 
+                } else {
+                    this.playAnimation(this.IMAGES_SLEEPING);
+                }
+            } else {
                 this.playAnimation(this.IMAGES_IDLE);
             }
         }, 62.36);
