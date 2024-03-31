@@ -29,6 +29,13 @@ class StatusbarCoins extends MovableObject {
 
     }
 
+    collectCoin() {
+        this.coinAmount += 10;
+        if (this.coinAmount > 100) {
+            this.coinAmount = 100;
+        }
+    }
+
     resolveImageIndex() {
         if (this.percentage == 0) {
             return 0;
