@@ -25,9 +25,8 @@ class StatusbarBottle extends DrawableObjects {
     }
 
     collectBottle() {
-        this.bottleAmount++;
-        if (this.bottleAmount > 12) {
-            this.bottleAmount = 12;
+        if (this.bottleAmount < 12) {
+            this.bottleAmount++;
         }
         this.updatePercentage();
     }
@@ -46,7 +45,7 @@ class StatusbarBottle extends DrawableObjects {
     }
 
       resolveImageIndex() {
-        return Math.min(Math.floor(this.percentage / 20), 12);
+        return Math.min(Math.floor(this.percentage / 10), this.IMAGES_BOTTLES.length -1);
         
     }
 
