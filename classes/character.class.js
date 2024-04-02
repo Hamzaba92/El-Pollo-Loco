@@ -6,6 +6,7 @@ class Character extends MovableObject {
     width = 130;
     img;
     speed = 5.5;
+    accaccelaration = 2;
 
 
 
@@ -72,7 +73,14 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/long_idle/I-20.png'
     ];
 
+    offset = {
+        top: 90,
+        left: 15,
+        right: 20,
+        bottom: 10
+    }
 
+    
     world;
     idleTime = new Date().getTime();
     currentImage = 0;

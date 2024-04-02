@@ -4,6 +4,7 @@ class DrawableObjects {
     currentImage = 0;
     height = 50;
     width = 50;
+    
 
     loadImage(path) {
         this.img = new Image();
@@ -27,14 +28,16 @@ class DrawableObjects {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
+
+        if (this instanceof Character || this instanceof Chicken || this instanceof littleChickens || this instanceof Coins || this instanceof SalsaBottles || this instanceof throwableObject || this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.strokeStyle = 'black';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top,this.width -this.offset.right - this.offset.left , this.height - this.offset.bottom -this.offset.top);
             ctx.stroke();
         }
-    }
+    };
+    
 
 
 

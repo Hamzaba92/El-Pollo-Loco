@@ -7,6 +7,13 @@ class SalsaBottles extends MovableObject {
     moveDistance = 100;
     currentImageIndex = 0;
     character;
+
+    offset = {
+        top: 15,
+        left: 58,
+        right: 50,
+        bottom: 10
+    }
     
 
     IMAGE_SALSABOTTLES_ONGROUND = [

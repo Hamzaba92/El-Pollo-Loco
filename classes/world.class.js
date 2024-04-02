@@ -35,7 +35,12 @@ class World {
             this.checkCollisionsWithGround();
             this.checkCollisionsWithBottles()
             this.checkCollisionsWithCoins();
+            this.checkCharacterJumpOnChicken();
         }, 40);
+
+        setInterval(() => {
+            this.checkCharacterJumpOnChicken();
+        }, 100)
 
     }
 
@@ -95,6 +100,15 @@ class World {
     }
 
 
+    checkCharacterJumpOnChicken() {
+        this.level.enemies.forEach((enemy, enemyIndex) => {
+            if (this.character.isColliding(enemy) && this.character.y + this.character.offset.bottom + this.character.height <= enemy.y + enemy.height && !enemy.deadChicken) {
+                enemy.deadChicken = true;
+                this.character.jump();
+                this.level.enemies.splice(enemyIndex, 1);
+            }
+        });
+    }
 
 
 
@@ -109,7 +123,6 @@ class World {
 
 
     draw() {
-
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMapp(this.level.backgroundObjects);
@@ -137,8 +150,6 @@ class World {
         });
 
     }
-
-
 
     addObjectsToMapp(objects) {
         objects.forEach(o => {

@@ -5,6 +5,14 @@ class littleChickens extends Chicken {
     width = 45;
     img;
     y = 377;
+    deadChicken = false;
+
+    offset = {
+        top: -5,
+        left: -15,
+        right: -15,
+        bottom: 0
+    };
 
     LITTLE_CHICKENS = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
@@ -27,19 +35,26 @@ class littleChickens extends Chicken {
     }
 
     animate() {
+        this.moveChickenToLeft();
 
-        setInterval(() => {
-            if (!this.isDead) {
-                this.moveLeft();
+        setInterval(()=>{
+            if(this.deadChicken){
+                this.playAnimation(this.LITTLE_CHICKENS_DEAD);
             }
-        }, 2500);
+        }, 2000)
 
         setInterval(() => {
-            if (!this.isDead) {
+            if (!this.deadChicken) {
                 this.playAnimation(this.LITTLE_CHICKENS);
             }
         }, 150);
-       
-
+        
     }
+
+    
+
+    moveChickenToLeft() {
+        this.moveLeft();
+    }
+
 }

@@ -70,7 +70,7 @@ const level1 = new Level(
         new Coins(2800, 150),
         new Coins(2650, 140),
         new Coins(2900, 150),
-        new Coins(3900, 180),
+        new Coins(3850, 270),
         new Coins(3800, 200)
     ],
 
@@ -86,7 +86,7 @@ const level1 = new Level(
         new SalsaBottles(3300),
         new SalsaBottles(3500),
         new SalsaBottles(4000),
-        new SalsaBottles(4100)
+        new SalsaBottles(3750)
     ],
 
 
