@@ -38,7 +38,9 @@ class littleChickens extends Chicken {
         this.moveChickenToLeft();
 
         setInterval(()=>{
-            if(this.deadChicken){
+            if(this instanceof littleChickens && !this.deadChicken){
+                this.deadChicken = true;
+                this.speed = 0;
                 this.playAnimation(this.LITTLE_CHICKENS_DEAD);
             }
         }, 2000)
@@ -56,5 +58,16 @@ class littleChickens extends Chicken {
     moveChickenToLeft() {
         this.moveLeft();
     }
+
+
+
+
+
+
+
+
+
+
+    
 
 }
