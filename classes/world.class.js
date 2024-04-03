@@ -102,10 +102,14 @@ class World {
 
     checkCharacterJumpOnChicken() {
         this.level.enemies.forEach((enemy, enemyIndex) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.speedY = 25;
+            if (this.character.isColliding(enemy) && !enemy.deadChicken) {
+                this.enemy.deadChicken = true;
+                this.character.jump();
                 this.character.isAboveGround();
-                this.level.enemies.splice(enemyIndex, 1);
+                this.setTimeout(() => {
+                    this.level.enemies.splice(enemyIndex, 1);
+                }, 200);
+                
             }
         });
     }

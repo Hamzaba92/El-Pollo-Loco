@@ -24,6 +24,9 @@ class MovableObject extends DrawableObjects {
                 this.y -= this.speedY;
                 this.speedY -= this.accelaration;
             }
+            if(this.character.y >= 205){
+                this.y = 205;
+            }
         }, 1000 / 39);
     }
 
