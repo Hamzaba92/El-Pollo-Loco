@@ -29,18 +29,18 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.UpdateThrowObjects();
-        }, 200);
+        }, 250);
 
         setInterval(() => {
             this.checkCollisionsWithGround();
             this.checkCollisionsWithBottles()
             this.checkCollisionsWithCoins();
             this.checkCharacterJumpOnChicken();
-        }, 40);
+        }, 10);
 
         setInterval(() => {
             this.checkCharacterJumpOnChicken();
-        }, 200)
+        }, 10)
 
     }
 

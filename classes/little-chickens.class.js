@@ -24,6 +24,8 @@ class littleChickens extends Chicken {
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
 
+    LITTLE_CHICKEN_HURT = new Audio('audio/little_chicken_hurt.mp3');
+
     constructor(x) {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.LITTLE_CHICKENS);
@@ -38,26 +40,28 @@ class littleChickens extends Chicken {
         this.moveChickenToLeft();
         this.playAliveChicken();
         this.playDeadChickenAnimation()
-
-       
-        
     }
 
-    playAliveChicken(){
-         setInterval(() => {
-            if (this.deadChicken) {
+    playAliveChicken() {
+        this.walkingIntervalLittleChicken = setInterval(() => {
+            if (!this.deadChicken) {
                 this.playAnimation(this.LITTLE_CHICKENS);
             }
-        }, 150);
+        }, 200);
     }
 
     playDeadChickenAnimation() {
-        if (this.deadChicken) {
-            this.speed = 0;
-            this.playAnimation(this.LITTLE_CHICKENS_DEAD);
-        }
+        let chickenInterval = setInterval(() => {
+            if (this.deadChicken) {
+                this.speed = 0;
+                clearInterval(this.walkingIntervalLittleChicken);
+                this.LITTLE_CHICKEN_HURT.play();
+                this.playAnimation(this.LITTLE_CHICKENS_DEAD);
+                clearInterval(chickenInterval);
+            }
+        }, 250);
     }
-    
+
 
 
     moveChickenToLeft() {
@@ -73,6 +77,6 @@ class littleChickens extends Chicken {
 
 
 
-    
+
 
 }
