@@ -14,6 +14,7 @@ class World {
     splashHeight = 368;
     collectedBottles = 0;
     collectedCoins = 0;
+    isShooted = false;
 
 
     constructor(canvas, keyboard) {
@@ -48,7 +49,7 @@ class World {
     UpdateThrowObjects() {
         if (this.keyboard.D && this.collectedBottles > 0) {
 
-            let bottle = new throwableObject(this.character.x + 60, this.character.y + 70);
+            let bottle = new throwableObject(this.character.x + 60, this.character.y + 70, this.character.otherDirection);
             this.throwableObject.push(bottle);
             this.bottleStatusbar.setPercentage(this.collectedBottles * 10);
             this.collectedBottles--;

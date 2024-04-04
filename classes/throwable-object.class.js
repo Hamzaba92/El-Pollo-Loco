@@ -3,7 +3,7 @@ class throwableObject extends MovableObject {
     character;
     isBreaking = false;
     isShooted = false;
-
+    deletable = false;
     SALSA_BOTTLES_IN_THE_AIR = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -27,7 +27,7 @@ class throwableObject extends MovableObject {
         bottom: 20
     };
 
-    constructor(x, y) {
+    constructor(x, y, direction) {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.SALSA_BOTTLES_IN_THE_AIR);
         this.loadImages(this.IMAGES_BOTTLE_SPLASH);
@@ -35,6 +35,7 @@ class throwableObject extends MovableObject {
         this.y = y;
         this.width = 65;
         this.height = 75;
+        this.otherDirection = direction;
         this.throw();
         this.throwedBottleInTheAir();
     }
@@ -49,6 +50,16 @@ class throwableObject extends MovableObject {
         setInterval(() => {
             this.x += 10;
         }, 25);
+
+
+        let moveInterval = setInterval(() => {
+            if (this.otherDirection) {
+                this.x += -40;
+                if (this.deletable) {
+                    clearInterval(moveInterval);
+                }
+            }
+        }, 50);
         
     }
 
@@ -61,7 +72,6 @@ class throwableObject extends MovableObject {
     }
 
     animationFinished() {
-
         if (this.IMAGES_BOTTLE_SPLASH && this.IMAGES_BOTTLE_SPLASH.length > 0) {
             return this.currentImageIndex === this.IMAGES_BOTTLE_SPLASH.length - 1;
         }
@@ -78,8 +88,5 @@ class throwableObject extends MovableObject {
             }
         }, 60);
     }
-
-
-
 
 }
