@@ -10,6 +10,7 @@ class MovableObject extends DrawableObjects {
     offset;
     lastShoot;
     sleeping = true;
+    gravityEnd;
     
     offset = {
         top: 0,
@@ -24,9 +25,7 @@ class MovableObject extends DrawableObjects {
                 this.y -= this.speedY;
                 this.speedY -= this.accelaration;
             }
-            if(this.character.y >= 205){
-                this.y = 205;
-            }
+            
         }, 1000 / 39);
     }
 
@@ -53,10 +52,16 @@ class MovableObject extends DrawableObjects {
     isAboveGround() {
         if (this instanceof throwableObject) {
             return true;
+        } else if (this.y < 205) {
+            return true;
         } else {
-            return this.y < 205;
+            if (this.y > this.gravityEnd) {
+                this.y = this.gravityEnd;
+            }
+            return this.y < this.gravityEnd;
         }
     }
+    
 
 
     playAnimation(images) {

@@ -51,15 +51,13 @@ class littleChickens extends Chicken {
         }, 150);
     }
 
-    playDeadChickenAnimation(){
-        setInterval(()=>{
-            if(!this.deadChicken){
-                this.deadChicken = true;
-                this.speed = 0;
-                this.playAnimation(this.LITTLE_CHICKENS_DEAD);
-            }
-        }, 200)
+    playDeadChickenAnimation() {
+        if (this.deadChicken) {
+            this.speed = 0;
+            this.playAnimation(this.LITTLE_CHICKENS_DEAD);
+        }
     }
+    
 
 
     moveChickenToLeft() {

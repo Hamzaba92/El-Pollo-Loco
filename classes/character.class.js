@@ -7,6 +7,7 @@ class Character extends MovableObject {
     img;
     speed = 5.5;
     accaccelaration = 2;
+    gravityEnd = 205;
 
 
 

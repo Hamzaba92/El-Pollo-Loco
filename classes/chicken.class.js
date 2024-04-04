@@ -13,6 +13,8 @@ class Chicken extends MovableObject {
         bottom: 2
     }
 
+    MIDDLE_CHICKEN_HURT = new Audio('audio/middle_chicken_hurt.mp3');
+
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
@@ -24,7 +26,8 @@ class Chicken extends MovableObject {
     ];
 
     currentImage = 0;
-    
+
+
 
     constructor(x) {
         super().loadImage('../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
@@ -38,26 +41,31 @@ class Chicken extends MovableObject {
     animate() {
         this.moveLeft();
 
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
+
+        this.walkingInterval = setInterval(() => {
+            if (!this.deadChicken) {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
         }, 200);
-              
+
         this.middleChickenDied();
-        }
+    }
 
-        middleChickenDied(){
-            let chickenInterval = setInterval(() => {
-                if (this.deadChicken) {
-                    this.speed = 0;
-                    this.playAnimation(this.IMAGES_DEAD_MIDDLE_CHICKEN);
-                    clearInterval(chickenInterval);
-                }
-            }, 150);
-        }
-            
-       
 
-        
+    middleChickenDied() {
+        let chickenInterval = setInterval(() => {
+            if (this.deadChicken) {
+                this.speed = 0;
+                clearInterval(this.walkingInterval);
+                this.MIDDLE_CHICKEN_HURT.play();
+                this.playAnimation(this.IMAGES_DEAD_MIDDLE_CHICKEN);
+                clearInterval(chickenInterval);
+            }
+        }, 180);
+    }
+
+
+
 
 
 }
