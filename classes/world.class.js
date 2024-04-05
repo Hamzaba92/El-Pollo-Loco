@@ -41,6 +41,7 @@ class World {
 
         setInterval(() => {
             this.checkCharacterJumpOnChicken();
+            this.ThrowableObjectAttack();
         }, 10)
 
     }
@@ -109,10 +110,35 @@ class World {
                 setTimeout(() => {
                     this.level.enemies.splice(enemyIndex, 1);
                 }, 270);
-                
+
             }
         });
     }
+
+
+    ThrowableObjectAttack() {
+        this.throwableObject.forEach((thrObjct) => {
+            this.level.enemies.forEach((enemy) => {
+                if (thrObjct.isColliding(enemy)) {
+                    enemy.deadChicken = true;
+                    enemy.toBeRemoved = true;
+                    thrObjct.toBeRemoved = true;
+
+                    setTimeout(() => {
+                        this.throwableObject = this.throwableObject.filter(obj => !obj.toBeRemoved);
+                        this.level.enemies = this.level.enemies.filter(e => !e.toBeRemoved);
+                    }, 270);
+                }
+            });
+        });
+
+
+    }
+
+
+
+
+
 
 
 
