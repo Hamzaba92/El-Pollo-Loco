@@ -87,8 +87,8 @@ class Character extends MovableObject {
     currentImage = 0;
 
     WALKING_SOUND = new Audio('audio/walking_pepe.mp3');
-    JUMPING_SOUND = new Audio('audio/pepe_jump.mp3')
-    HURT_SOUND = new Audio('audio/pepe_hurt.mp3')
+    JUMPING_SOUND = new Audio('audio/pepe_jump.mp3');
+    HURT_SOUND = new Audio('audio/pepe_hurt.mp3');
 
     constructor() {
         super().loadImage('../img/2_character_pepe/1_idle/idle/I-2.png');

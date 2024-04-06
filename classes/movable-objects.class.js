@@ -48,6 +48,18 @@ class MovableObject extends DrawableObjects {
         return timepassed < 0.4;
     }
 
+    endbossHit() {
+        let currentTime = new Date().getTime();
+        let timePassed = currentTime - this.lastHit; 
+        if (timePassed >= 500) { 
+            this.endbossEnergy -= 20;
+            if (this.endbossEnergy <= 0) {
+                this.endbossEnergy = 0;
+            }
+            this.lastHit = currentTime; 
+        }
+    }
+
   
     isAboveGround() {
         if (this instanceof throwableObject) {

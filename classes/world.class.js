@@ -1,6 +1,7 @@
 class World {
 
     character = new Character();
+    endboss = new Endboss();
     level = level1;
     ctx;
     canvas;
@@ -15,6 +16,7 @@ class World {
     collectedBottles = 0;
     collectedCoins = 0;
     isShooted = false;
+    lastJump;
 
 
     constructor(canvas, keyboard) {
@@ -42,10 +44,19 @@ class World {
         setInterval(() => {
             this.checkCharacterJumpOnChicken();
             this.ThrowableObjectAttack();
+            this.checkBottleEndbossCollison();
         }, 10)
 
     }
 
+    checkCollisionswithEndboss() {
+        this.level.enemies.forEach((endboss) => {
+            if (this.character.isColliding(endboss)) {
+                this.character.hit();
+                this.statusbar.setPercentage(this.character.energy);
+            }
+        });
+    }
 
     UpdateThrowObjects() {
         if (this.keyboard.D && this.collectedBottles > 0) {
@@ -132,9 +143,45 @@ class World {
             });
         });
 
-
     }
 
+    checkEndbossCollision() {
+        if (this.character.isColliding(this.endboss)) {
+            this.character.hit();
+            this.statusbar.setPercentage(this.character.energy);
+        }
+    }
+
+    checkBottleEndbossCollison() {
+        this.throwableObject.forEach((bottle, bottleIndex) => {
+            if (bottle.isColliding(this.endboss)) {
+                this.endboss.endbossHit();
+                bottle.breakAndSplash();
+                this.endboss.ENDBOSS_GETS_HURT.play();
+                this.endBossStatusbar.setPercentage(this.endboss.endbossEnergy);
+                setTimeout(() => {
+                    this.throwableObject.splice(bottleIndex, 1);
+                }, 200);
+            }
+        });
+    }
+
+
+    endbossAction() {
+        if (this.character.x >= 3300 && !this.entered3300) {
+            this.entered3300 = true;
+            this.endboss.endbossArea = true;
+        }
+        if (this.entered3300) {
+            this.endboss.alert();
+        }
+    }
+
+    checkEndbossIsDead() {
+        if (this.endboss.endbossEnergy === 0) {
+            this.endboss.endbossDead = true;
+        }
+    }
 
 
 
@@ -168,11 +215,10 @@ class World {
         this.addToMapp(this.coinStatusbar);
         this.addToMapp(this.endBossStatusbar);
 
-
         this.ctx.translate(this.camera_x, 0);
+        this.addToMapp(this.endboss);
         this.addToMapp(this.character);
         this.ctx.translate(-this.camera_x, 0);
-
 
         let self = this;
         requestAnimationFrame(function () {
