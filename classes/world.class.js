@@ -15,7 +15,7 @@ class World {
     splashHeight = 368;
     collectedBottles = 0;
     collectedCoins = 0;
-    isShooted = false;
+    
     lastJump;
 
 
@@ -45,7 +45,8 @@ class World {
             this.checkCharacterJumpOnChicken();
             this.ThrowableObjectAttack();
             this.checkBottleEndbossCollison();
-        }, 10)
+            this.checkEndbossCollision();
+        }, 50)
 
     }
 
@@ -155,8 +156,10 @@ class World {
     checkBottleEndbossCollison() {
         this.throwableObject.forEach((bottle, bottleIndex) => {
             if (bottle.isColliding(this.endboss)) {
+                this.endboss.walkingAndJumping();
                 this.endboss.endbossHit();
                 bottle.breakAndSplash();
+                this.endboss.jump();
                 this.endboss.ENDBOSS_GETS_HURT.play();
                 this.endBossStatusbar.setPercentage(this.endboss.endbossEnergy);
                 setTimeout(() => {

@@ -30,7 +30,7 @@ class MovableObject extends DrawableObjects {
     }
 
     hit() {
-        this.energy -= 2;
+        this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -74,6 +74,8 @@ class MovableObject extends DrawableObjects {
         }
     }
     
+   
+ 
 
 
     playAnimation(images) {
@@ -96,6 +98,7 @@ class MovableObject extends DrawableObjects {
             this.x -= this.speed;
         }, 60);
     }
+
 
     jump() {
         this.speedY = 30;
