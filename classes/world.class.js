@@ -15,8 +15,9 @@ class World {
     splashHeight = 368;
     collectedBottles = 0;
     collectedCoins = 0;
-    
+    enteredendBosArea = false;
     lastJump;
+    deadAnimationPlayed = false;
 
 
     constructor(canvas, keyboard) {
@@ -39,6 +40,7 @@ class World {
             this.checkCollisionsWithBottles()
             this.checkCollisionsWithCoins();
             this.checkCharacterJumpOnChicken();
+            this.checkEndbossIsDead();
         }, 10);
 
         setInterval(() => {
@@ -46,6 +48,7 @@ class World {
             this.ThrowableObjectAttack();
             this.checkBottleEndbossCollison();
             this.checkEndbossCollision();
+            this.endbossAction();
         }, 50)
 
     }
@@ -113,7 +116,6 @@ class World {
         });
     }
 
-
     checkCharacterJumpOnChicken() {
         this.level.enemies.forEach((enemy, enemyIndex) => {
             if (this.character.isColliding(enemy) && !enemy.deadChicken && this.character.isAboveGround()) {
@@ -126,7 +128,6 @@ class World {
             }
         });
     }
-
 
     ThrowableObjectAttack() {
         this.throwableObject.forEach((thrObjct) => {
@@ -159,7 +160,6 @@ class World {
                 this.endboss.walkingAndJumping();
                 this.endboss.endbossHit();
                 bottle.breakAndSplash();
-                this.endboss.jump();
                 this.endboss.ENDBOSS_GETS_HURT.play();
                 this.endBossStatusbar.setPercentage(this.endboss.endbossEnergy);
                 setTimeout(() => {
@@ -170,19 +170,23 @@ class World {
     }
 
 
-    endbossAction() {
-        if (this.character.x >= 3300 && !this.entered3300) {
-            this.entered3300 = true;
-            this.endboss.endbossArea = true;
-        }
-        if (this.entered3300) {
-            this.endboss.alert();
-        }
-    }
-
     checkEndbossIsDead() {
         if (this.endboss.endbossEnergy === 0) {
             this.endboss.endbossDead = true;
+        }
+    }
+
+    endbossAction() {
+        if (this.character.x >= 3325 && !this.enteredendBosArea) {
+            this.enteredendBosArea = true;
+            this.endboss.endbossArea = true;
+            this.endboss.ENDBOSS_GETS_HURT_LONG_CROW.play();
+        }
+        if (this.enteredendBosArea) {
+            this.endboss.alert();
+            this.endboss.animateEnd();
+        } else {
+            this.endboss.dead();
         }
     }
 
