@@ -3,12 +3,18 @@ let world;
 let keyboard = new Keyboard();
 
 
-function init() {
+function startGame(){
+    init();
+    document.getElementById('startScreen_img').style.display = 'none';
+    document.getElementById('start_game').style.display = 'none';
+}
 
+
+function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    console.log('My Character is', world.character);
     playBackgroundMusic();
+    
 }
 
 window.addEventListener('keydown', (e) => {
@@ -66,7 +72,7 @@ window.addEventListener('keyup', (e) => {
 })
 
 
-let toggle = true;
+let toggle = false;
 
 
 function playBackgroundMusic() {
@@ -83,6 +89,8 @@ function playBackgroundMusic() {
 
     toggle = !toggle;
 }
+
+
 
 
 canvas = document.getElementById('canvas');

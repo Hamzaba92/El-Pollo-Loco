@@ -7,10 +7,10 @@ class Chicken extends MovableObject {
     deadChicken = false;
 
     offset = {
-        top: 2,
+        top: 1,
         left: 2,
         right: 2,
-        bottom: 2
+        bottom: 3
     }
 
     MIDDLE_CHICKEN_HURT = new Audio('audio/middle_chicken_hurt.mp3');
