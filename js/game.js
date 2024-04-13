@@ -3,19 +3,34 @@ let world;
 let keyboard = new Keyboard();
 
 
-function startGame(){
+function startGame() {
     init();
-    document.getElementById('startScreen_img').style.display = 'none';
-    document.getElementById('start_game').style.display = 'none';
+    document.getElementById('startScreen_img').remove();
+    document.getElementById('start_game').remove();
 }
+
+function tryAgain() {
+    document.getElementById('endScreen_img').remove();
+    document.getElementById('end_game').remove();
+    window.location.reload();
+
+}
+
+function gameOver() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+    document.getElementById('endScreen_img').style.display = 'block';
+    document.getElementById('end_game').style.display = 'block';
+}
+
 
 
 function init() {
+    initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     playBackgroundMusic();
-    
 }
+
 
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 39) {

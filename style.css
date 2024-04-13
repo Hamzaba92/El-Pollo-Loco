@@ -65,10 +65,10 @@ canvas {
 }
 
 #startScreen_img{
-    height: 479px;
-    width: 979px;
-    padding-left: 3px;
-    padding-top: 3px;
+    height: 480px;
+    width: 980px;
+    padding-left: 2.7px;
+    padding-top: 2.4px;
 }
 
 #startScreen_img:hover{
@@ -96,8 +96,47 @@ canvas {
     cursor: pointer;
     transform: translate(-50%, -50%) scale(1.1);
     border-color: rgb(255,244,54); 
+    z-index: auto;
 }
 
+.endScreen{
+    position: absolute;
+}
+
+#endScreen_img{
+    height: 480px;
+    width: 980px;
+    padding-left: 3px;
+    padding-top: 2.5px;
+}
+
+#endScreen_img:hover{
+    cursor: auto;
+}
+
+#end_game{
+    position: absolute;
+    height: 77px;
+    width: 178px;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 38px;
+    font-family: 'Zabars';
+    border-radius: 12px;
+    border-color: black;
+    background-color: #df944c;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    transition: transform 0.2s ease-in-out, border 0.3s ease;
+}
+
+#end_game:hover{
+    cursor: pointer;
+    transform: translate(-50%, -50%) scale(1.1);
+    border-color: rgb(255,244,54); 
+    z-index: auto;
+}
 
 @media only screen and (max-height: 480px) {
     canvas{

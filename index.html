@@ -48,7 +48,7 @@
 
 </head>
 
-<body onload="init()">
+<body>
 
     <h1>El Pollo Loco</h1>
 
@@ -60,17 +60,24 @@
                     onclick="playBackgroundMusic()">
                 <img id="fullscreen" onclick="toggleFullScreen()" src="./img/fullscreen_icon.png">
             </div>
-        <canvas id="canvas" width="980" height="480"></canvas>
+        
 
-<!--
+
         <div class="startScreen">
             <img id="startScreen_img" src="img/9_intro_outro_screens/start/startscreen_1.png">
         </div>
-
         <button id="start_game" onclick="startGame()">Start Game</button>
--->
+
+
         
 
+
+        <div class="endScreen">
+            <img id="endScreen_img" style="display: none;" src="img/9_intro_outro_screens/game_over/game over.png">
+        </div>
+        <button id="end_game" style="display: none;" onclick="tryAgain()">Try Again!</button>
+
+        <canvas id="canvas" width="980" height="480"></canvas>
 
     </section>
 

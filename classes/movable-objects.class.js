@@ -30,7 +30,7 @@ class MovableObject extends DrawableObjects {
     }
 
     hit() {
-        this.energy -= 5;
+        this.energy -= 16.66;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -59,7 +59,6 @@ class MovableObject extends DrawableObjects {
             this.lastHit = currentTime; 
         }
     }
-
   
     isAboveGround() {
         if (this instanceof throwableObject) {
@@ -73,10 +72,6 @@ class MovableObject extends DrawableObjects {
             return this.y < this.gravityEnd;
         }
     }
-    
-   
- 
-
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
@@ -85,13 +80,10 @@ class MovableObject extends DrawableObjects {
         this.currentImage++;
     }
 
-
-
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
     }
-
 
     moveLeft() {
         setInterval(() => {
@@ -99,12 +91,10 @@ class MovableObject extends DrawableObjects {
         }, 60);
     }
 
-
     jump() {
         this.speedY = 30;
         this.idleTime = new Date().getTime();
     }
-
 
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&

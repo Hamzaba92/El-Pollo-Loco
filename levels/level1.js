@@ -1,6 +1,8 @@
-const level1 = new Level(
+let level1;
 
-
+function initLevel() {
+    
+    level1 = new Level(
     [
         new Chicken(1000),
         new Chicken(1500),
@@ -86,17 +88,6 @@ const level1 = new Level(
         new SalsaBottles(3750)
     ],
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 )
+
+}

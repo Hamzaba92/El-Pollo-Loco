@@ -32,8 +32,11 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
+        }, 280);
+
+        setInterval(() => {
             this.UpdateThrowObjects();
-        }, 250);
+        }, 180);
 
         setInterval(() => {
             this.checkCollisionsWithGround();
@@ -41,7 +44,7 @@ class World {
             this.checkCollisionsWithCoins();
             this.checkCharacterJumpOnChicken();
             this.checkEndbossIsDead();
-        }, 10);
+        }, 15);
 
         setInterval(() => {
             this.checkCharacterJumpOnChicken();
@@ -49,7 +52,7 @@ class World {
             this.checkBottleEndbossCollison();
             this.checkEndbossCollision();
             this.endbossAction();
-        }, 50)
+        }, 30)
 
     }
 
@@ -76,7 +79,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.statusbar.setPercentage(this.character.energy)//function damit die statusbar abnimmt
+                this.statusbar.setPercentage(this.character.energy)
             }
         });
     }
@@ -173,6 +176,8 @@ class World {
     checkEndbossIsDead() {
         if (this.endboss.endbossEnergy === 0) {
             this.endboss.endbossDead = true;
+            this.endboss.showLastDeadImage();
+            this.character.this.WALKING_SOUND.pause();
         }
     }
 
@@ -187,6 +192,7 @@ class World {
             this.endboss.animateEnd();
         } else {
             this.endboss.dead();
+
         }
     }
 

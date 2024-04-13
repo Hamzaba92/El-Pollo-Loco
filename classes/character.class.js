@@ -132,6 +132,8 @@ class Character extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                gameOver();
+                this.WALKING_SOUND.pause();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
                 this.HURT_SOUND.play();
