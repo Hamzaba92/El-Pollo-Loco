@@ -151,6 +151,12 @@ function touchScreenButtons() {
         keyboard.D = false;
         throwbottle.style.transform = 'scale(1.0)';
     })
+
+    document.querySelectorAll('.mobile-buttons img').forEach(button => {
+        button.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+    });
 }
 
 
@@ -171,8 +177,6 @@ function playBackgroundMusic() {
 
     toggle = !toggle;
 }
-
-
 
 
 canvas = document.getElementById('canvas');

@@ -16,8 +16,8 @@ class World {
     collectedBottles = 0;
     collectedCoins = 0;
     enteredendBosArea = false;
-    lastJump;
     deadAnimationPlayed = false;
+
 
 
     constructor(canvas, keyboard) {
@@ -67,13 +67,12 @@ class World {
 
     checkCollisions() {                                                                          
         this.level.enemies.forEach((enemy) => {         
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !this.character.hit()) {
                 this.character.hit(); 
-                this.statusbar.setPercentage(this.character.energy)
+                this.statusbar.setPercentage(this.character.energy) 
             }
         });
     }
-
 
     checkCollisionsWithGround() {
         this.throwableObject.forEach((throwableObject, index) => {

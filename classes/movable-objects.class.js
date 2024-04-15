@@ -11,7 +11,7 @@ class MovableObject extends DrawableObjects {
     lastShoot;
     sleeping = true;
     gravityEnd;
-    
+
     offset = {
         top: 0,
         left: 0,
@@ -25,18 +25,21 @@ class MovableObject extends DrawableObjects {
                 this.y -= this.speedY;
                 this.speedY -= this.accelaration;
             }
-            
+
         }, 1000 / 39);
     }
 
     hit() {
-        this.energy -= 16.66;
-        if (this.energy < 0) {
-            this.energy = 0;
-        } else {
-            this.lastHit = new Date().getTime();
+        if (!this.isAboveGround()) {
+            this.energy -= 10;
+            if (this.energy < 0) {
+                this.energy = 0;
+            } else {
+                this.lastHit = new Date().getTime();
+            }
         }
     }
+
 
     isDead() {
         return this.energy == 0;
@@ -50,16 +53,16 @@ class MovableObject extends DrawableObjects {
 
     endbossHit() {
         let currentTime = new Date().getTime();
-        let timePassed = currentTime - this.lastHit; 
-        if (timePassed >= 500) { 
+        let timePassed = currentTime - this.lastHit;
+        if (timePassed >= 500) {
             this.endbossEnergy -= 20;
             if (this.endbossEnergy <= 0) {
                 this.endbossEnergy = 0;
             }
-            this.lastHit = currentTime; 
+            this.lastHit = currentTime;
         }
     }
-  
+
     isAboveGround() {
         if (this instanceof throwableObject) {
             return true;

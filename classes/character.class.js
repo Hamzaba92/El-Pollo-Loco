@@ -8,6 +8,7 @@ class Character extends MovableObject {
     speed = 5.5;
     accaccelaration = 2;
     gravityEnd = 205;
+    
 
 
 
@@ -100,7 +101,6 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_SLEEPING);
         this.applyGravity();
         this.animate();
-
     }
 
     animate() {
