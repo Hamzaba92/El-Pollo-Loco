@@ -4,12 +4,12 @@ class StatusbarBottle extends DrawableObjects {
 
 
     IMAGES_BOTTLES = [
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/40.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/60.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/80.png',
-        'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png'
+        './img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png',
+        './img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png',
+        './img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/40.png',
+        './img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/60.png',
+        './img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/80.png',
+        './img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png'
     ];
 
 
@@ -18,9 +18,9 @@ class StatusbarBottle extends DrawableObjects {
         this.loadImages(this.IMAGES_BOTTLES);
         this.setPercentage(0);
         this.x = 30;
-        this.y = 47;
-        this.width = 200;
-        this.height = 60;
+        this.y = 42;
+        this.width = 145;
+        this.height = 50;
         
     }
 

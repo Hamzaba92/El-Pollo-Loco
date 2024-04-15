@@ -4,21 +4,21 @@ class endBossStatusbar extends MovableObject{
     percentage = 100;
 
     IMAGES_ENDBOSS = [
-        'img/7_statusbars/2_statusbar_endboss/blue/blue0.png',
-        'img/7_statusbars/2_statusbar_endboss/blue/blue20.png',
-        'img/7_statusbars/2_statusbar_endboss/blue/blue40.png',
-        'img/7_statusbars/2_statusbar_endboss/blue/blue60.png',
-        'img/7_statusbars/2_statusbar_endboss/blue/blue80.png',
-        'img/7_statusbars/2_statusbar_endboss/blue/blue100.png'
+        './img/7_statusbars/2_statusbar_endboss/blue/blue0.png',
+        './img/7_statusbars/2_statusbar_endboss/blue/blue20.png',
+        './img/7_statusbars/2_statusbar_endboss/blue/blue40.png',
+        './img/7_statusbars/2_statusbar_endboss/blue/blue60.png',
+        './img/7_statusbars/2_statusbar_endboss/blue/blue80.png',
+        './img/7_statusbars/2_statusbar_endboss/blue/blue100.png'
     ];
 
     constructor(){
         super();
         this.loadImages(this.IMAGES_ENDBOSS);
-        this.x = 743;
+        this.x = 595;
         this.y = 10;
-        this.height = 60;
-        this.width = 200;
+        this.height = 50;
+        this.width = 145;
         this.setPercentage(100);
     }
 

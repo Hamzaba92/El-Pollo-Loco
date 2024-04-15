@@ -1,5 +1,5 @@
 class World {
-
+    
     character = new Character();
     endboss = new Endboss();
     level = level1;
@@ -32,37 +32,27 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-        }, 280);
+        }, 270);
 
         setInterval(() => {
             this.UpdateThrowObjects();
-        }, 180);
+        }, 170);
 
         setInterval(() => {
             this.checkCollisionsWithGround();
             this.checkCollisionsWithBottles()
             this.checkCollisionsWithCoins();
-            this.checkCharacterJumpOnChicken();
             this.checkEndbossIsDead();
         }, 15);
 
         setInterval(() => {
-            this.checkCharacterJumpOnChicken();
             this.ThrowableObjectAttack();
             this.checkBottleEndbossCollison();
             this.checkEndbossCollision();
             this.endbossAction();
+            this.checkCharacterJumpOnChicken();
         }, 30)
 
-    }
-
-    checkCollisionswithEndboss() {
-        this.level.enemies.forEach((endboss) => {
-            if (this.character.isColliding(endboss)) {
-                this.character.hit();
-                this.statusbar.setPercentage(this.character.energy);
-            }
-        });
     }
 
     UpdateThrowObjects() {
@@ -75,10 +65,10 @@ class World {
         }
     }
 
-    checkCollisions() {
-        this.level.enemies.forEach((enemy) => {
+    checkCollisions() {                                                                          
+        this.level.enemies.forEach((enemy) => {         
             if (this.character.isColliding(enemy)) {
-                this.character.hit();
+                this.character.hit(); 
                 this.statusbar.setPercentage(this.character.energy)
             }
         });
@@ -127,7 +117,6 @@ class World {
                 setTimeout(() => {
                     this.level.enemies.splice(enemyIndex, 1);
                 }, 270);
-
             }
         });
     }
@@ -177,7 +166,7 @@ class World {
         if (this.endboss.endbossEnergy === 0) {
             this.endboss.endbossDead = true;
             this.endboss.showLastDeadImage();
-            this.character.this.WALKING_SOUND.pause();
+            this.character.WALKING_SOUND.pause();
         }
     }
 
@@ -192,7 +181,6 @@ class World {
             this.endboss.animateEnd();
         } else {
             this.endboss.dead();
-
         }
     }
 

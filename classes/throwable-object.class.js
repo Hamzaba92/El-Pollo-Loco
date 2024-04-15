@@ -29,7 +29,7 @@ class throwableObject extends MovableObject {
     };
 
     constructor(x, y, direction) {
-        super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
+        super().loadImage('./img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.SALSA_BOTTLES_IN_THE_AIR);
         this.loadImages(this.IMAGES_BOTTLE_SPLASH);
         this.x = x;

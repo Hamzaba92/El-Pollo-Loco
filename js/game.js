@@ -2,12 +2,29 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+window.addEventListener('DOMContentLoaded', function() {
+    initLevel();
+});
+
 
 function startGame() {
-    init();
-    document.getElementById('startScreen_img').remove();
-    document.getElementById('start_game').remove();
-}
+        init();
+        let startScreenImg = document.getElementById('startScreen_img');
+        let startGameButton = document.getElementById('start_game');
+    
+        if (startScreenImg){
+            startScreenImg.remove();
+        } 
+        if (startGameButton){
+            startGameButton.remove();
+        } 
+    }
+
+    function removeAllAudioSources() {
+        document.querySelectorAll('audio, source').forEach(element => {
+            element.remove();
+        });
+    }
 
 function tryAgain() {
     document.getElementById('endScreen_img').remove();
@@ -17,6 +34,7 @@ function tryAgain() {
 }
 
 function gameOver() {
+    removeAllAudioSources();
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
     document.getElementById('endScreen_img').style.display = 'block';
     document.getElementById('end_game').style.display = 'block';
