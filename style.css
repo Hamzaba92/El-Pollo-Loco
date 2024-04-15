@@ -78,7 +78,7 @@ canvas {
     position: absolute;
     height: 77px;
     width: 178px;
-    top: 35%;
+    top: 34%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 38px;
@@ -117,7 +117,7 @@ canvas {
     position: absolute;
     height: 77px;
     width: 178px;
-    top: 35%;
+    top: 34%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 38px;
@@ -142,16 +142,91 @@ canvas {
 }
 
 
+
+
+
+/**Landscape-mod for Iphone 13 pro Max. **/
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
     }
+
+    h1 {
+        letter-spacing: 7px;
+        text-shadow: 3px 6px 2px rgba(0, 0, 0, 0.2);
+        margin: 0;
+        font-size: 60px;
+    }
+
+    #startScreen_img {
+        height: 429px;
+        width: 696px;
+        padding-left: 2.7px;
+        padding-top: 2.4px;
+    }
+
+    #start_game {
+        position: absolute;
+        height: 77px;
+        width: 225px;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 38px;
+        font-family: 'Zabars';
+        color: black;
+        border-radius: 12px;
+        border-color: black;
+        background-color: #f09b48;
+        text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        letter-spacing: 2px;
+        transition: transform 0.2s ease-in-out, border 0.3s ease;
+    }
+
+    #endScreen_img {
+        height: 429px;
+        width: 695px;
+        padding-left: 3px;
+        padding-top: 2.5px;
+    }
+
+    #end_game {
+        position: absolute;
+        height: 73px;
+        width: 224px;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 38px;
+        font-family: 'Zabars';
+        color: black;
+        border-radius: 12px;
+        border-color: black;
+        background-color: #f09b48;
+        text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        letter-spacing: 2px;
+        transition: transform 0.2s ease-in-out, border 0.3s ease;
+    }
+
+    .game-instruction {
+        display: none;
+    }
+
+
 }
 
 @media only screen and (max-width: 780px) {
     canvas {
         width: 100%;
     }
+}
+
+
+@media (max-width:790px) {
+    .game-instruction {
+        font-size: 24px;
+    }
+
 }
 
 @media (max-width: 700px) {
@@ -172,11 +247,13 @@ canvas {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+        text-align: center;
     }
 
-    .rotate-your-phone img{
+    .rotate-your-phone img {
         height: 214px;
         width: 214px;
     }
+
 
 }
