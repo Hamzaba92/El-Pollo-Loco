@@ -27,6 +27,10 @@ canvas {
     border: solid 3px #D0C7B6;
 }
 
+#game_container{
+    position: relative;
+}
+
 .icons-above-canvas {
     display: flex;
     justify-content: flex-end;
@@ -78,7 +82,7 @@ canvas {
     position: absolute;
     height: 77px;
     width: 178px;
-    top: 34%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 38px;
@@ -117,7 +121,7 @@ canvas {
     position: absolute;
     height: 77px;
     width: 178px;
-    top: 34%;
+    top: 23%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 38px;
@@ -140,6 +144,23 @@ canvas {
 .rotate-your-phone {
     display: none;
 }
+
+.mobile-buttons {
+    position: absolute;
+    bottom: 14px; 
+    left: 25px; 
+    right: 25px;
+    display: flex;
+    justify-content: space-between; 
+    z-index: 100;
+    display: none;
+}
+
+#left_side, #right_side {
+    display: flex;
+    column-gap: 48px;
+}
+
 
 
 
@@ -169,7 +190,7 @@ canvas {
         position: absolute;
         height: 77px;
         width: 225px;
-        top: 40%;
+        top: 25%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 38px;
@@ -194,7 +215,7 @@ canvas {
         position: absolute;
         height: 73px;
         width: 224px;
-        top: 40%;
+        top: 23%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 38px;
@@ -212,6 +233,15 @@ canvas {
         display: none;
     }
 
+    .mobile-buttons {
+        position: absolute;
+        bottom: 14px; 
+        left: 25px; 
+        right: 25px;
+        display: flex;
+        justify-content: space-between; 
+        z-index: 100;
+    }
 
 }
 

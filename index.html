@@ -10,36 +10,36 @@
 
 
 
- 
-<script src="classes/world.class.js"></script>
-<script src="classes/drawable-objects.class.js"></script>
-<script src="classes/movable-objects.class.js"></script>
-<script src="classes/keyboard.class.js"></script>
+
+    <script src="classes/world.class.js"></script>
+    <script src="classes/drawable-objects.class.js"></script>
+    <script src="classes/movable-objects.class.js"></script>
+    <script src="classes/keyboard.class.js"></script>
 
 
-<script src="classes/character.class.js"></script>
-<script src="classes/chicken.class.js"></script>
-<script src="classes/little-chickens.class.js"></script>
-<script src="classes/clouds.class.js"></script>
-<script src="classes/statusbar.class.js"></script>
-<script src="classes/bottles-statusbar.class.js"></script>
-<script src="classes/statusbar-coins.class.js"></script>
-<script src="classes/statusbar-endboss.class.js"></script>
-<script src="classes/throwable-object.class.js"></script>
-<script src="classes/coins.class.js"></script>
-<script src="classes/salsa-bottles.class.js"></script>
+    <script src="classes/character.class.js"></script>
+    <script src="classes/chicken.class.js"></script>
+    <script src="classes/little-chickens.class.js"></script>
+    <script src="classes/clouds.class.js"></script>
+    <script src="classes/statusbar.class.js"></script>
+    <script src="classes/bottles-statusbar.class.js"></script>
+    <script src="classes/statusbar-coins.class.js"></script>
+    <script src="classes/statusbar-endboss.class.js"></script>
+    <script src="classes/throwable-object.class.js"></script>
+    <script src="classes/coins.class.js"></script>
+    <script src="classes/salsa-bottles.class.js"></script>
 
 
-<script src="classes/level.classes.js"></script>
-<script src="classes/endboss.class.js"></script>
-<script src="classes/backgroundobjects.class.js"></script>
+    <script src="classes/level.classes.js"></script>
+    <script src="classes/endboss.class.js"></script>
+    <script src="classes/backgroundobjects.class.js"></script>
 
 
-<script src="levels/level1.js"></script>
-<script src="js/sounds.js"></script>
+    <script src="levels/level1.js"></script>
+    <script src="js/sounds.js"></script>
 
 
-<script src="js/game.js"></script>
+    <script src="js/game.js"></script>
 
 
 
@@ -60,27 +60,39 @@
                     onclick="playBackgroundMusic()">
                 <img id="fullscreen" onclick="toggleFullScreen()" src="./img/fullscreen_icon.png">
             </div>
-        
+
+            <div class="startScreen">
+                <img id="startScreen_img" src="img/9_intro_outro_screens/start/startscreen_1.png">
+            </div>
+            <button id="start_game" onclick="startGame()">Start Game</button>
 
 
-        <div class="startScreen">
-            <img id="startScreen_img" src="img/9_intro_outro_screens/start/startscreen_1.png">
-        </div>
-        <button id="start_game" onclick="startGame()">Start Game</button>
+            <div class="endScreen">
+                <img id="endScreen_img" style="display: none;" src="img/9_intro_outro_screens/game_over/game over.png">
+            </div>
+            <button id="end_game" style="display: none;" onclick="tryAgain()">Try Again!</button>
+
+            <canvas id="canvas" width="780" height="480">
+                
+            </canvas>
+
+            <div class="mobile-buttons">
+                <div id="left_side">
+                    <img id="btn_walk_left" src="./img_design/left_arrow.png">
+                    <img id="btn_walk_right" src="./img_design/right_arrow.png">
+                </div>
+
+                <div id="right_side">
+                    <img id="jump" src="./img_design/jump.png">
+                    <img id="throwbottle" src="./img_design/bottle_throw.png">
+                </div>
+            </div>
 
 
-        <div class="endScreen">
-            <img id="endScreen_img" style="display: none;" src="img/9_intro_outro_screens/game_over/game over.png">
-        </div>
-        <button id="end_game" style="display: none;" onclick="tryAgain()">Try Again!</button>
-
-        <canvas id="canvas" width="780" height="480"></canvas>
-
-
-        <div class="rotate-your-phone">
-            <span>PLEASE ROTATE YOUR PHONE</span>
-            <img src="./img_design/rotate.png">
-        </div>
+            <div class="rotate-your-phone">
+                <span>PLEASE ROTATE YOUR PHONE</span>
+                <img src="./img_design/rotate.png">
+            </div>
 
     </section>
 

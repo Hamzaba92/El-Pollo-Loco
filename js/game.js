@@ -2,29 +2,28 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
     initLevel();
 });
 
-
 function startGame() {
-        init();
-        let startScreenImg = document.getElementById('startScreen_img');
-        let startGameButton = document.getElementById('start_game');
-    
-        if (startScreenImg){
-            startScreenImg.remove();
-        } 
-        if (startGameButton){
-            startGameButton.remove();
-        } 
-    }
+    init();
+    let startScreenImg = document.getElementById('startScreen_img');
+    let startGameButton = document.getElementById('start_game');
 
-    function removeAllAudioSources() {
-        document.querySelectorAll('audio, source').forEach(element => {
-            element.remove();
-        });
+    if (startScreenImg) {
+        startScreenImg.remove();
     }
+    if (startGameButton) {
+        startGameButton.remove();
+    }
+}
+
+function removeAllAudioSources() {
+    document.querySelectorAll('audio, source').forEach(element => {
+        element.remove();
+    });
+}
 
 function tryAgain() {
     document.getElementById('endScreen_img').remove();
@@ -47,6 +46,7 @@ function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     playBackgroundMusic();
+    touchScreenButtons();
 }
 
 
@@ -105,8 +105,53 @@ window.addEventListener('keyup', (e) => {
 })
 
 
+function touchScreenButtons() {
+    let leftarrow = document.getElementById('btn_walk_left');
+    let rightarrow = document.getElementById('btn_walk_right');
+    let jump = document.getElementById('jump');
+    let throwbottle = document.getElementById('throwbottle');
 
+    leftarrow.addEventListener('touchstart', () => {
+        keyboard.LEFT = true;
+        leftarrow.style.transform = 'scale(1.2)';
+    })
 
+    leftarrow.addEventListener('touchend', () => {
+        keyboard.LEFT = false;
+        leftarrow.style.transform = 'scale(1.0)';
+    })
+
+    rightarrow.addEventListener('touchstart', () => {
+        keyboard.RIGHT = true;
+        rightarrow.style.transform = 'scale(1.2)';
+    })
+
+    rightarrow.addEventListener('touchend', () => {
+        keyboard.RIGHT = false;
+        rightarrow.style.transform = 'scale(1.0)';
+    })
+
+    jump.addEventListener('touchstart', () => {
+        keyboard.SPACE = true;
+        jump.style.transform = 'scale(1.2)';
+    })
+
+    jump.addEventListener('touchend', () => {
+        keyboard.SPACE = false;
+        jump.style.transform = 'scale(1.0)';
+    })
+
+    throwbottle.addEventListener('touchstart', () => {
+        keyboard.D = true;
+        throwbottle.style.transform = 'scale(1.2)';
+        console.log('funktioniert')
+    })
+
+    throwbottle.addEventListener('touchend', () => {
+        keyboard.D = false;
+        throwbottle.style.transform = 'scale(1.0)';
+    })
+}
 
 
 let toggle = false;
