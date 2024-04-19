@@ -52,15 +52,19 @@ class Chicken extends MovableObject {
                 this.speed = 0;
                 clearInterval(this.walkingInterval);
                 this.MIDDLE_CHICKEN_HURT.volume = 0.5;
-                this.MIDDLE_CHICKEN_HURT.play();
+                playAudio(MIDDLE_CHICKEN_HURT);
                 this.playAnimation(this.IMAGES_DEAD_MIDDLE_CHICKEN);
                 clearInterval(chickenInterval);
             }
         }, 180);
     }
 
-
-
-
+    playAudio(audio) {
+        if (this.soundActive && this.audioEffectsActive) {
+            if (audio.paused) {
+                audio.play().catch(e => console.error("Fehler beim Abspielen des Sounds: ", e));
+            }
+        }
+    }
 
 }

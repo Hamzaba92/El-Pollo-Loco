@@ -55,7 +55,7 @@ class littleChickens extends Chicken {
                 this.speed = 0;
                 clearInterval(this.walkingIntervalLittleChicken);
                 this.LITTLE_CHICKEN_HURT.volume = 0.5;
-                this.LITTLE_CHICKEN_HURT.play();
+                playAudio(LITTLE_CHICKEN_HURT);
                 this.playAnimation(this.LITTLE_CHICKENS_DEAD);
                 clearInterval(chickenInterval);
             }

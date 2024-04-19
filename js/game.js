@@ -19,12 +19,6 @@ function startGame() {
     }
 }
 
-function removeAllAudioSources() {
-    document.querySelectorAll('audio, source').forEach(element => {
-        element.pause();
-    });
-}
-
 function tryAgain() {
     document.getElementById('endScreen_img').remove();
     document.getElementById('end_game').remove();
@@ -33,22 +27,17 @@ function tryAgain() {
 }
 
 function gameOver() {
-    removeAllAudioSources();
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
     document.getElementById('endScreen_img').style.display = 'block';
     document.getElementById('end_game').style.display = 'block';
 }
 
-
-
 function init() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
     touchScreenButtons();
 }
-
 
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 39) {

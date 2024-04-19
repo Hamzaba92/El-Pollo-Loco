@@ -84,9 +84,6 @@ class Character extends MovableObject {
     idleTime = new Date().getTime();
     currentImage = 0;
 
-    WALKING_SOUND = new Audio('audio/Walking_pepe.mp3');
-    JUMPING_SOUND = new Audio('audio/pepe_jump.mp3');
-    HURT_SOUND = new Audio('audio/pepe_hurt.mp3');
 
     constructor() {
         super().loadImage('./img/2_character_pepe/1_idle/idle/I-2.png');
@@ -103,23 +100,21 @@ class Character extends MovableObject {
     animate() {
 
         setInterval(() => {
-            this.WALKING_SOUND.pause();
+            this.pauseAudio(WALKING_SOUND);
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
-                this.WALKING_SOUND.volume = 0.8;
-                this.WALKING_SOUND.play();
+                playAudio(WALKING_SOUND);
             };
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
-                this.WALKING_SOUND.play();
+                playAudio(WALKING_SOUND);
             };
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                this.JUMPING_SOUND.volume = 0.8;
-                this.JUMPING_SOUND.play();
+                playAudio(JUMPING_SOUND);
             }
             this.world.camera_x = -this.x + 100;
 
@@ -132,10 +127,10 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 gameOver();
-                this.WALKING_SOUND.pause();
+                this.pauseAudio(WALKING_SOUND);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                this.HURT_SOUND.play();
+                playAudio(HURT_SOUND);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
@@ -153,4 +148,21 @@ class Character extends MovableObject {
             }
         }, 62);
     }
+
+    pauseAudio(audio) {
+        if (!audio.paused) {
+            audio.pause();
+        }
+    }
+
+    playAudio(audio) {
+        if (this.soundActive && this.audioEffectsActive) {
+            if (audio.paused) {
+                audio.play().catch(e => console.error("Fehler beim Abspielen des Sounds: ", e));
+            }
+        }
+    }
+
+
+
 }

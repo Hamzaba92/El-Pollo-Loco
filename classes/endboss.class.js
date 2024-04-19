@@ -153,14 +153,36 @@ class Endboss extends MovableObject {
         this.loadImage(lastDeadImage);
         setTimeout(()=>{
             this.gameEnd();
-        }, 550)
+        }, 400)
     }
 
     gameEnd() {
         gameOver();
-        BACKGROUND_SOUND.pause();
+        this.stopAllSounds();
     }
 
+    stopAllSounds() {
+        const allSounds = [
+            BACKGROUND_SOUND,
+            COLLECTED_BOTTLE,
+            COLLECTED_COIN,
+            WALKING_SOUND,
+            JUMPING_SOUND,
+            HURT_SOUND,
+            MIDDLE_CHICKEN_HURT,
+            LITTLE_CHICKEN_HURT,
+            ENDBOSS_GETS_HURT_LONG_CROW,
+            ENDBOSS_GETS_HURT,
+            BOTTLE_BREAKS,
+            THROW_BOTTLE_SOUND
+        ];
+    
+        allSounds.forEach(audio => {
+            if (!audio.paused) {
+                audio.pause();
+            }
+        });
+    }
 
 
 

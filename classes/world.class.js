@@ -149,7 +149,7 @@ class World {
                 this.endboss.walkingAndJumping();
                 this.endboss.endbossHit();
                 bottle.breakAndSplash();
-                this.endboss.ENDBOSS_GETS_HURT.play();
+                playAudio(ENDBOSS_GETS_HURT);
                 this.endBossStatusbar.setPercentage(this.endboss.endbossEnergy);
                 setTimeout(() => {
                     this.throwableObject.splice(bottleIndex, 1);
@@ -162,7 +162,6 @@ class World {
         if (this.endboss.endbossEnergy === 0) {
             this.endboss.endbossDead = true;
             this.endboss.showLastDeadImage();
-            this.character.WALKING_SOUND.pause();
         }
     }
 
@@ -170,7 +169,7 @@ class World {
         if (this.character.x >= 3325 && !this.enteredendBosArea) {
             this.enteredendBosArea = true;
             this.endboss.endbossArea = true;
-            this.endboss.ENDBOSS_GETS_HURT_LONG_CROW.play();
+            playAudio(ENDBOSS_GETS_HURT_LONG_CROW);
         }
         if (this.enteredendBosArea) {
             this.endboss.alert();

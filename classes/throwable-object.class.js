@@ -41,13 +41,11 @@ class throwableObject extends MovableObject {
         this.throwedBottleInTheAir();
     }
 
-    THROW_BOTTLE_SOUND = new Audio('audio/throw_bottle.mp3');
-    BOTTLE_BREAKS = new Audio('audio/breaking_bottle.mp3');
-
+    
     throw() {
         this.speedY = 27;
         this.applyGravity();
-        this.THROW_BOTTLE_SOUND.play();
+        playAudio(THROW_BOTTLE_SOUND);
         setInterval(() => {
             this.x += 10;
         }, 25);
@@ -65,7 +63,7 @@ class throwableObject extends MovableObject {
     breakAndSplash() {
         this.isBreaking = true;
         this.playAnimation(this.IMAGES_BOTTLE_SPLASH); 
-        this.BOTTLE_BREAKS.play();
+        playAudio(BOTTLE_BREAKS);
         this.speedY = 6.5;
     }
 
