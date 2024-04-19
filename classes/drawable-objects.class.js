@@ -28,11 +28,10 @@ class DrawableObjects {
     }
 
     drawFrame(ctx) {
-
         if (this instanceof Character || this instanceof Chicken || this instanceof littleChickens || this instanceof Coins || this instanceof SalsaBottles || this instanceof throwableObject || this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '5';
-            ctx.strokeStyle = 'Transparent';
+            ctx.strokeStyle = 'transparent';
             ctx.rect(this.x + this.offset.left, this.y + this.offset.top,this.width -this.offset.right - this.offset.left , this.height - this.offset.bottom -this.offset.top);
             ctx.stroke();
         }

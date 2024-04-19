@@ -28,7 +28,6 @@ class endBossStatusbar extends MovableObject{
         this.img = this.imageCache[path];
     }
 
-
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;

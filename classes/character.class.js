@@ -8,9 +8,13 @@ class Character extends MovableObject {
     speed = 5.5;
     accaccelaration = 2;
     gravityEnd = 205;
-    
 
-
+    offset = {
+        top: 90,
+        left: 15,
+        right: 20,
+        bottom: 2
+    }
 
     IMAGES_WALKING = [
         './img/2_character_pepe/2_walk/W-21.png',
@@ -75,14 +79,7 @@ class Character extends MovableObject {
         './img/2_character_pepe/1_idle/long_idle/I-20.png'
     ];
 
-    offset = {
-        top: 90,
-        left: 15,
-        right: 20,
-        bottom: 10
-    }
 
-    
     world;
     idleTime = new Date().getTime();
     currentImage = 0;
@@ -109,6 +106,7 @@ class Character extends MovableObject {
             this.WALKING_SOUND.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
+                this.WALKING_SOUND.volume = 0.8;
                 this.WALKING_SOUND.play();
             };
 
@@ -120,6 +118,7 @@ class Character extends MovableObject {
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+                this.JUMPING_SOUND.volume = 0.8;
                 this.JUMPING_SOUND.play();
             }
             this.world.camera_x = -this.x + 100;
@@ -145,7 +144,7 @@ class Character extends MovableObject {
             } else if (timeSinceLastMove > 5000) {
                 if (this.world.keyboard.D) {
                     this.playAnimation(this.IMAGES_IDLE);
-                    this.idleTime = currentTime; 
+                    this.idleTime = currentTime;
                 } else {
                     this.playAnimation(this.IMAGES_SLEEPING);
                 }

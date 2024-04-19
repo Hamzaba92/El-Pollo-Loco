@@ -15,6 +15,8 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     margin: 0;
+    height: 100vh;
+    overflow: hidden;
 }
 
 h1 {
@@ -27,7 +29,11 @@ canvas {
     border: solid 3px #D0C7B6;
 }
 
-#game_container{
+.overcontainer {
+    position: relative;
+}
+
+#game_container {
     position: relative;
 }
 
@@ -147,29 +153,33 @@ canvas {
 
 .mobile-buttons {
     position: absolute;
-    bottom: 14px; 
-    left: 25px; 
+    bottom: 14px;
+    left: 25px;
     right: 25px;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     z-index: 100;
     display: none;
 }
 
-#left_side, #right_side {
+#left_side,
+#right_side,
+#throwbottle,
+#jump {
     display: flex;
-    column-gap: 48px;
+    column-gap: 58px;
+}
+
+#lef_side img {
+    height: 30px;
+    width: 38px;
 }
 
 
-
-
-
-
-/**Landscape-mod for Iphone 13 pro Max. **/
+/**Landscape-mod**/
 @media only screen and (max-height: 480px) {
     canvas {
-        height: 100vh;
+        height: 80vh;
     }
 
     h1 {
@@ -177,20 +187,33 @@ canvas {
         text-shadow: 3px 6px 2px rgba(0, 0, 0, 0.2);
         margin: 0;
         font-size: 60px;
+        display: none;
+    }
+
+    .icons-above-canvas {
+        position: absolute;
+        top: 40px;
+        right: 30px;
+        z-index: 995;
+    }
+
+    .icons-above-canvas img{
+        height: 22px;
+        width: 22px;
     }
 
     #startScreen_img {
-        height: 429px;
-        width: 696px;
-        padding-left: 2.7px;
+        height: 80vh;
+        width: 475px;
+        padding-left: 2px;
         padding-top: 2.4px;
     }
 
     #start_game {
         position: absolute;
-        height: 77px;
-        width: 225px;
-        top: 25%;
+        height: 59px;
+        width: 180px;
+        top: 15%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 38px;
@@ -205,17 +228,17 @@ canvas {
     }
 
     #endScreen_img {
-        height: 429px;
-        width: 695px;
-        padding-left: 3px;
-        padding-top: 2.5px;
+        height: 80vh;
+        width: 475px;
+        padding-left: 2px;
+        padding-top: 2.4px;
     }
 
     #end_game {
         position: absolute;
-        height: 73px;
-        width: 224px;
-        top: 23%;
+        height: 59px;
+        width: 193px;
+        top: 15%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 38px;
@@ -235,12 +258,17 @@ canvas {
 
     .mobile-buttons {
         position: absolute;
-        bottom: 14px; 
-        left: 25px; 
+        bottom: 14px;
+        left: 25px;
         right: 25px;
         display: flex;
-        justify-content: space-between; 
+        justify-content: space-between;
         z-index: 100;
+    }
+
+    .mobile-buttons img{
+        height: 36px;
+        width: 36px;
     }
 
 }
@@ -261,7 +289,7 @@ canvas {
 
 @media (max-width: 700px) {
     .rotate-your-phone {
-        display: block;
+        display: flex;
         position: fixed;
         flex-direction: column;
         top: 0;
@@ -269,7 +297,6 @@ canvas {
         height: 100%;
         width: 100%;
         z-index: 999;
-        display: flex;
         align-items: center;
         justify-content: center;
         letter-spacing: 3px;
@@ -278,11 +305,16 @@ canvas {
         background-repeat: no-repeat;
         background-position: center;
         text-align: center;
+        color: black;
+        font-size: 60px;
+        text-shadow: 2px 1px 4px rgba(0, 0, 0, 0.8);
+
     }
 
     .rotate-your-phone img {
-        height: 214px;
-        width: 214px;
+        padding-top: 150px;
+        height: 248px;
+        width: 248px;
     }
 
 

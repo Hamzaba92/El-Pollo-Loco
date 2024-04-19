@@ -51,7 +51,6 @@ class StatusbarCoins extends MovableObject {
             return 5;
         }
         return Math.min(Math.floor(this.percentage / 20), this.IMAGES_COINS.length - 1);
-
     }
-
+    
 }

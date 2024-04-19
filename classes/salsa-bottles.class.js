@@ -14,14 +14,11 @@ class SalsaBottles extends MovableObject {
         right: 50,
         bottom: 10
     }
-    
 
     IMAGE_SALSABOTTLES_ONGROUND = [
         './img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
         './img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
     ];
-
-
 
     constructor(x) {
         super().loadImage(this.IMAGE_SALSABOTTLES_ONGROUND[0]);
@@ -31,18 +28,11 @@ class SalsaBottles extends MovableObject {
         
     }
 
-
-
     bottlesRotate() {
         setInterval(() => {
             this.playAnimation(this.IMAGE_SALSABOTTLES_ONGROUND)
         }, 400);
- 
     }
-
-
-   
-
 
 }
 

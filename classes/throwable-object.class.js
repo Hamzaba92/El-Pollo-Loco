@@ -52,7 +52,6 @@ class throwableObject extends MovableObject {
             this.x += 10;
         }, 25);
 
-
         let moveInterval = setInterval(() => {
             if (this.otherDirection) {
                 this.x += -40;
@@ -61,9 +60,7 @@ class throwableObject extends MovableObject {
                 }
             }
         }, 50);
-        
     }
-
 
     breakAndSplash() {
         this.isBreaking = true;
@@ -79,7 +76,6 @@ class throwableObject extends MovableObject {
         return false;
     }
 
-
     throwedBottleInTheAir() {
        let resetAnimation = setInterval(() => {
             if (!this.isBreaking) {
@@ -89,5 +85,4 @@ class throwableObject extends MovableObject {
             }
         }, 60);
     }
-
 }

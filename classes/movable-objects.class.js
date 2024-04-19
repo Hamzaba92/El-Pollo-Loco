@@ -25,7 +25,6 @@ class MovableObject extends DrawableObjects {
                 this.y -= this.speedY;
                 this.speedY -= this.accelaration;
             }
-
         }, 1000 / 39);
     }
 
@@ -39,7 +38,6 @@ class MovableObject extends DrawableObjects {
             }
         }
     }
-
 
     isDead() {
         return this.energy == 0;
@@ -105,6 +103,5 @@ class MovableObject extends DrawableObjects {
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
-
 
 }

@@ -8,10 +8,10 @@ class littleChickens extends Chicken {
     deadChicken = false;
 
     offset = {
-        top: -5,
-        left: -15,
-        right: -15,
-        bottom: 0
+        top: 2,  
+        left: -3, 
+        right: -3, 
+        bottom: 1
     };
 
     LITTLE_CHICKENS = [
@@ -33,7 +33,6 @@ class littleChickens extends Chicken {
         this.x = x;
         this.speed = 0.05 + Math.random() * 0.10;
         this.animate();
-
     }
 
     animate() {
@@ -55,14 +54,13 @@ class littleChickens extends Chicken {
             if (this.deadChicken) {
                 this.speed = 0;
                 clearInterval(this.walkingIntervalLittleChicken);
+                this.LITTLE_CHICKEN_HURT.volume = 0.5;
                 this.LITTLE_CHICKEN_HURT.play();
                 this.playAnimation(this.LITTLE_CHICKENS_DEAD);
                 clearInterval(chickenInterval);
             }
         }, 250);
     }
-
-
 
     moveChickenToLeft() {
         this.moveLeft();

@@ -1,5 +1,5 @@
 class World {
-    
+
     character = new Character();
     endboss = new Endboss();
     level = level1;
@@ -18,8 +18,6 @@ class World {
     enteredendBosArea = false;
     deadAnimationPlayed = false;
 
-
-
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -32,11 +30,11 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-        }, 270);
+        }, 200);
 
         setInterval(() => {
             this.UpdateThrowObjects();
-        }, 170);
+        }, 180);
 
         setInterval(() => {
             this.checkCollisionsWithGround();
@@ -65,11 +63,11 @@ class World {
         }
     }
 
-    checkCollisions() {                                                                          
-        this.level.enemies.forEach((enemy) => {         
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.hit()) {
-                this.character.hit(); 
-                this.statusbar.setPercentage(this.character.energy) 
+                this.character.hit();
+                this.statusbar.setPercentage(this.character.energy)
             }
         });
     }
@@ -160,7 +158,6 @@ class World {
         });
     }
 
-
     checkEndbossIsDead() {
         if (this.endboss.endbossEnergy === 0) {
             this.endboss.endbossDead = true;
@@ -183,21 +180,9 @@ class World {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
     setWorld() {
         this.character.world = this;
     }
-
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -224,7 +209,6 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
-
     }
 
     addObjectsToMapp(objects) {
@@ -245,7 +229,6 @@ class World {
         }
     }
 
-
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0)
@@ -257,9 +240,6 @@ class World {
         this.ctx.restore();
         mo.x = mo.x * -1;
     }
-
-
-
 
 }
 

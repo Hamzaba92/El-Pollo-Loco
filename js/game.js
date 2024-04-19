@@ -21,7 +21,7 @@ function startGame() {
 
 function removeAllAudioSources() {
     document.querySelectorAll('audio, source').forEach(element => {
-        element.remove();
+        element.pause();
     });
 }
 
@@ -45,7 +45,7 @@ function init() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    playBackgroundMusic();
+
     touchScreenButtons();
 }
 
@@ -101,9 +101,7 @@ window.addEventListener('keyup', (e) => {
     if (e.keyCode == 68) {
         keyboard.D = false;
     }
-
 })
-
 
 function touchScreenButtons() {
     let leftarrow = document.getElementById('btn_walk_left');
@@ -144,7 +142,6 @@ function touchScreenButtons() {
     throwbottle.addEventListener('touchstart', () => {
         keyboard.D = true;
         throwbottle.style.transform = 'scale(1.2)';
-        console.log('funktioniert')
     })
 
     throwbottle.addEventListener('touchend', () => {
@@ -153,31 +150,12 @@ function touchScreenButtons() {
     })
 
     document.querySelectorAll('.mobile-buttons img').forEach(button => {
-        button.addEventListener('contextmenu', function(event) {
+        button.addEventListener('contextmenu', function (event) {
             event.preventDefault();
         });
     });
+
 }
-
-
-let toggle = false;
-
-
-function playBackgroundMusic() {
-
-    let toggleImg = document.getElementById('toggle_sound_btn');
-    BACKGROUND_SOUND.loop = true;
-    if (toggle) {
-        BACKGROUND_SOUND.play();
-        toggleImg.src = './img/sound_on.png';
-    } else {
-        BACKGROUND_SOUND.pause();
-        toggleImg.src = './img/sound_mute.png';
-    }
-
-    toggle = !toggle;
-}
-
 
 canvas = document.getElementById('canvas');
 

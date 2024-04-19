@@ -4,7 +4,6 @@ class Cloud extends MovableObject {
     x = 50;
     height = 250;
     width = 350;
-   
 
     constructor(imagePath, x, y,){
         super().loadImage(imagePath);
@@ -17,8 +16,5 @@ class Cloud extends MovableObject {
     animate(){
         this.moveLeft();
     }
-
-  
-
 
 } 

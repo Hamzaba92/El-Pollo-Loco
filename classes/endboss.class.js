@@ -16,15 +16,12 @@ class Endboss extends MovableObject {
     isHit = true;
     speedX = 0;
 
-
-
     offset = {
         top: 65,
         left: 5,
         right: 5,
         bottom: 10
     };
-
 
     ENDBOSS_GETS_HURT_LONG_CROW = new Audio('audio/endboss_hurt.mp3');
     ENDBOSS_GETS_HURT = new Audio('audio/endboss_hurt2.mp3');
@@ -150,7 +147,6 @@ class Endboss extends MovableObject {
             clearInterval(this.idleTime);
         }
     }
-
 
     showLastDeadImage() {
         const lastDeadImage = this.IMAGES_DEATH[this.IMAGES_DEATH.length - 1];
