@@ -10,6 +10,7 @@ function startGame() {
     init();
     let startScreenImg = document.getElementById('startScreen_img');
     let startGameButton = document.getElementById('start_game');
+    let fullscreenBtn = document.getElementById('fullscreen');
 
     if (startScreenImg) {
         startScreenImg.remove();
@@ -17,17 +18,24 @@ function startGame() {
     if (startGameButton) {
         startGameButton.remove();
     }
+    if (fullscreenBtn) {
+        fullscreenBtn.style.display = 'flex';
+    }
 }
 
 function tryAgain() {
-    document.getElementById('endScreen_img').remove();
-    document.getElementById('end_game').remove();
-    window.location.reload();
-
+    document.getElementById('endScreen_img').style.display = 'none';
+    document.getElementById('end_game').style.display = 'none';
+    for (let i = 1; i < 100000; i++) {
+        window.clearInterval(i);
+    }
+    init();
 }
 
 function gameOver() {
-    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+    for (let i = 1; i < 100000; i++) {
+        window.clearInterval(i);
+    }
     document.getElementById('endScreen_img').style.display = 'block';
     document.getElementById('end_game').style.display = 'block';
 }

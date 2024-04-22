@@ -9,6 +9,7 @@ let COLLECTED_COIN = new Audio('audio/collect_coin.mp3');
 let WALKING_SOUND = new Audio('audio/Walking_pepe.mp3');
 let JUMPING_SOUND = new Audio('audio/pepe_jump.mp3');
 let HURT_SOUND = new Audio('audio/pepe_hurt.mp3');
+let SNORING_SOUND = new Audio('audio/pepe_snoring.mp3');
 
 let MIDDLE_CHICKEN_HURT = new Audio('audio/middle_chicken_hurt.mp3');
 let LITTLE_CHICKEN_HURT = new Audio('audio/little_chicken_hurt.mp3');
@@ -24,6 +25,8 @@ BACKGROUND_SOUND.loop = true;
 COLLECTED_BOTTLE.volume = 0.8;
 COLLECTED_COIN.volume = 0.5;
 WALKING_SOUND.volume = 0.7;
+MIDDLE_CHICKEN_HURT.volume = 0.5;
+LITTLE_CHICKEN_HURT.volume = 0.5;
 
 function toggleBackgroundMusic() {
     soundActive = !soundActive;
@@ -66,7 +69,7 @@ function updateSoundEffects() {
 
     if (!soundActive) {
         allSounds.forEach(audio => {
-            audio.pause();  // Pausiere alle Soundeffekte
+            audio.pause();
         });
     }
 
