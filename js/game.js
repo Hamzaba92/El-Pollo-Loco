@@ -13,10 +13,10 @@ function startGame() {
     let fullscreenBtn = document.getElementById('fullscreen');
 
     if (startScreenImg) {
-        startScreenImg.remove();
+        startScreenImg.style.display = 'none';
     }
     if (startGameButton) {
-        startGameButton.remove();
+        startGameButton.style.display = 'none';
     }
     if (fullscreenBtn) {
         fullscreenBtn.style.display = 'flex';
@@ -26,10 +26,15 @@ function startGame() {
 function tryAgain() {
     document.getElementById('endScreen_img').style.display = 'none';
     document.getElementById('end_game').style.display = 'none';
+    document.getElementById('when_pepe_died').style.display = 'none';
+    
+    this.whenPepeDiedDisplayed = false;
+
     for (let i = 1; i < 100000; i++) {
         window.clearInterval(i);
     }
     init();
+    updateBackgroundMusic();
 }
 
 function gameOver() {
@@ -38,6 +43,15 @@ function gameOver() {
     }
     document.getElementById('endScreen_img').style.display = 'block';
     document.getElementById('end_game').style.display = 'block';
+}
+
+function youLost(){
+    if(!this.whenPepeDiedDisplayed){
+        this.whenPepeDiedDisplayed = true;
+        playAudio(PEPE_LOSE);
+        document.getElementById('when_pepe_died').style.display = 'block';
+        document.getElementById('endScreen_img').style.display = 'none';
+    }
 }
 
 function init() {

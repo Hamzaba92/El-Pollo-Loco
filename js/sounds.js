@@ -10,12 +10,14 @@ let WALKING_SOUND = new Audio('audio/Walking_pepe.mp3');
 let JUMPING_SOUND = new Audio('audio/pepe_jump.mp3');
 let HURT_SOUND = new Audio('audio/pepe_hurt.mp3');
 let SNORING_SOUND = new Audio('audio/pepe_snoring.mp3');
+let PEPE_LOSE = new Audio('audio/pepe_lost_sound.mp3');
 
 let MIDDLE_CHICKEN_HURT = new Audio('audio/middle_chicken_hurt.mp3');
 let LITTLE_CHICKEN_HURT = new Audio('audio/little_chicken_hurt.mp3');
 
 let ENDBOSS_GETS_HURT_LONG_CROW = new Audio('audio/endboss_hurt.mp3');
 let ENDBOSS_GETS_HURT = new Audio('audio/endboss_hurt2.mp3');
+let ENDBOSS_DEFEATED = new Audio('audio/defeat_endboss.mp3');
 
 let BOTTLE_BREAKS = new Audio('audio/breaking_bottle.mp3');
 let THROW_BOTTLE_SOUND = new Audio('audio/throw_bottle.mp3');
@@ -27,6 +29,7 @@ COLLECTED_COIN.volume = 0.5;
 WALKING_SOUND.volume = 0.7;
 MIDDLE_CHICKEN_HURT.volume = 0.5;
 LITTLE_CHICKEN_HURT.volume = 0.5;
+PEPE_LOSE.playbackRate = 1.7;
 
 function toggleBackgroundMusic() {
     soundActive = !soundActive;

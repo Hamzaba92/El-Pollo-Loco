@@ -34,40 +34,44 @@ class World {
 
         setInterval(() => {
             this.UpdateThrowObjects();
-        }, 145);
+        }, 100);
 
         setInterval(() => {
             this.checkCollisionsWithGround();
             this.checkCollisionsWithBottles()
             this.checkCollisionsWithCoins();
-            
+
         }, 15);
 
         setInterval(() => {
             this.ThrowableObjectAttack();
             this.checkBottleEndbossCollison();
             this.checkCharacterJumpOnChicken();
-        }, 30);
+        }, 20);
 
-        setInterval(()=>{
+        setInterval(() => {
             this.checkEndbossCollision();
             this.endbossAction();
         }, 190);
 
-        setInterval(()=>{
-             this.checkEndbossIsDead();
+        setInterval(() => {
+            this.checkEndbossIsDead();
         }, 220);
 
     }
 
     UpdateThrowObjects() {
-        if (this.keyboard.D && this.collectedBottles > 0) {
-            let bottle = new throwableObject(this.character.x + 60, this.character.y + 70, this.character.otherDirection);
+        if (this.keyboard.D && this.collectedBottles > 0 && !this.character.isThrowing) {
+            this.character.isThrowing = true; // Setze die Flag, wenn eine Flasche geworfen wird
+            let bottle = new throwableObject(this.character.x + 60, this.character.y + 70, this.character.otherDirection, this.character);
             this.throwableObject.push(bottle);
             this.bottleStatusbar.setPercentage(this.collectedBottles * 10);
             this.collectedBottles--;
+        } else {
+            this.character.isThrowing = false;
         }
     }
+
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -167,7 +171,10 @@ class World {
     checkEndbossIsDead() {
         if (this.endboss.endbossEnergy === 0) {
             this.endboss.endbossDead = true;
-                this.endboss.dead();
+            setTimeout(()=>{
+                playAudio(ENDBOSS_DEFEATED);
+            }, 40)
+            this.endboss.dead();
         }
     }
 
@@ -175,13 +182,13 @@ class World {
         if (this.character.x >= 3325 && !this.enteredendBosArea) {
             this.enteredendBosArea = true;
             this.endboss.endbossArea = true;
-            playAudio(ENDBOSS_GETS_HURT_LONG_CROW);  
+            playAudio(ENDBOSS_GETS_HURT_LONG_CROW);
         }
-    
+
         if (this.enteredendBosArea) {
             this.endboss.alert();
             this.endboss.animateEnd();
-            this.checkEndbossIsDead();  
+            this.checkEndbossIsDead();
         }
     }
 

@@ -141,6 +141,13 @@ canvas {
     transition: transform 0.2s ease-in-out, border 0.3s ease;
 }
 
+#when_pepe_died{
+    height: 480px;
+    width: 780px;
+    padding-left: 3px;
+    padding-top: 2.5px;
+}
+
 #end_game:hover {
     cursor: pointer;
     transform: translate(-50%, -50%) scale(1.1);

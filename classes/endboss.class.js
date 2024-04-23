@@ -6,14 +6,11 @@ class Endboss extends MovableObject {
     x = 3800;
     endbossArea = false;
     endbossDead = false;
-    endbossEnd = false;
     alertInterval;
     checkEndbossAreaInterval;
     walkingAndJumpingInterval;
     gravityEnd = 100;
     endbossEnergy = 100;
-    isAttacking = false;
-    isHit = true;
     speedX = 0;
 
     offset = {
@@ -78,7 +75,6 @@ class Endboss extends MovableObject {
         this.idleTime = null;
         this.moveLeftInterval = null;
         this.isAboveGround = true;
-
     }
 
     alert() {
@@ -119,7 +115,7 @@ class Endboss extends MovableObject {
             this.moveLeftInterval = setInterval(() => {
                 this.x -= 42;
                 this.playAnimation(this.IMAGES_WALK);
-            }, 500);
+            }, 380);
         }
     }
 

@@ -28,7 +28,7 @@ class throwableObject extends MovableObject {
         bottom: 20
     };
 
-    constructor(x, y, direction) {
+    constructor(x, y, direction, character) {
         super().loadImage('./img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.SALSA_BOTTLES_IN_THE_AIR);
         this.loadImages(this.IMAGES_BOTTLE_SPLASH);
@@ -37,6 +37,7 @@ class throwableObject extends MovableObject {
         this.width = 65;
         this.height = 75;
         this.otherDirection = direction;
+        this.character = character;
         this.throw();
         this.throwedBottleInTheAir();
     }
@@ -49,13 +50,23 @@ class throwableObject extends MovableObject {
         setInterval(() => {
             this.x += 10;
         }, 25);
-
+        this.checkIfBroken();
         let moveInterval = setInterval(() => {
             if (this.otherDirection) {
                 this.x += -40;
                 if (this.deletable) {
                     clearInterval(moveInterval);
                 }
+            }
+        }, 50);
+    }
+
+    checkIfBroken() {
+        // Logik zur Überprüfung, ob die Flasche zerbrochen ist oder ihr Ziel erreicht hat
+        let checkInterval = setInterval(() => {
+            if (this.deletable) { 
+                clearInterval(checkInterval);
+                this.character.isThrowing = false; // Setze die Flag zurück, wenn die Flasche "fertig" ist
             }
         }, 50);
     }

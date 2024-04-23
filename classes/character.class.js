@@ -10,6 +10,7 @@ class Character extends MovableObject {
     gravityEnd = 205;
     isJumping = false;
     hasJumped = false;
+    whenPepeDiedDisplayed = false;
 
     offset = {
         top: 90,
@@ -127,8 +128,10 @@ class Character extends MovableObject {
         const currentTime = new Date().getTime();
         const timeSinceLastMove = currentTime - this.idleTime;
     
-        if (this.isDead()) {
+        if (this.isDead() && !this.whenPepeDiedDisplayed) {
+            this.whenPepeDiedDisplayed = true;
             this.handleDeadState();
+            youLost();
         } else if (this.isHurt()) {
             this.handleHurtState();
         } else if (this.isAboveGround()) {
