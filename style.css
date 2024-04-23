@@ -29,12 +29,20 @@ canvas {
     border: solid 3px #D0C7B6;
 }
 
+
+#fullscreen {
+    display: none;
+}
+
 .overcontainer {
     position: relative;
+
 }
 
 #game_container {
     position: relative;
+    width: max-content;
+    margin: auto;
 }
 
 .icons-above-canvas {
@@ -141,7 +149,7 @@ canvas {
     transition: transform 0.2s ease-in-out, border 0.3s ease;
 }
 
-#when_pepe_died{
+#when_pepe_died {
     height: 480px;
     width: 780px;
     padding-left: 3px;
@@ -190,8 +198,8 @@ canvas {
         height: 80vh;
     }
 
-    #fullscreen{
-        display: none;
+    #fullscreen {
+        display: none !important;
     }
 
     h1 {
@@ -200,6 +208,12 @@ canvas {
         margin: 0;
         font-size: 60px;
         display: none;
+    }
+
+    .youLosePepe {
+        height: 290px!important;
+        width: 100%!important;
+        padding-top: 2.5px!important;
     }
 
     .icons-above-canvas {
@@ -244,6 +258,7 @@ canvas {
         padding-top: 2.4px;
     }
 
+
     #end_game {
         position: absolute;
         height: 59px;
@@ -287,6 +302,8 @@ canvas {
     canvas {
         width: 100%;
     }
+
+   
 }
 
 
@@ -318,7 +335,6 @@ canvas {
         color: black;
         font-size: 60px;
         text-shadow: 2px 1px 4px rgba(0, 0, 0, 0.8);
-
     }
 
     .rotate-your-phone img {

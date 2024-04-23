@@ -170,6 +170,8 @@ function touchScreenButtons() {
 
 canvas = document.getElementById('canvas');
 
+
+
 function toggleFullScreen() {
     if (isInFullScreen()) {
         exitFullscreen();
@@ -187,13 +189,20 @@ function isInFullScreen() {
 
 function enterFullscreen() {
     if (canvas.requestFullscreen) {
-        canvas.requestFullscreen();
+        canvas.requestFullscreen().then(() => {
+            touchScreenButtons();  // Aufruf nach erfolgreichem Wechsel
+        }).catch(err => {
+            alert("Error attempting to enable full-screen mode: " + err.message + " (the request was denied)");
+        });
     } else if (canvas.webkitRequestFullScreen) {
         canvas.webkitRequestFullScreen();
+        touchScreenButtons(); // WebKit browsers may not return a promise
     } else if (canvas.mozRequestFullScreen) {
         canvas.mozRequestFullScreen();
+        touchScreenButtons(); // Firefox may not return a promise
     } else if (canvas.msRequestFullscreen) {
         canvas.msRequestFullscreen();
+        touchScreenButtons(); // IE/Edge may not return a promise
     } else {
         alert("This browser doesn't support fullscreen");
     }
@@ -221,9 +230,10 @@ document.addEventListener('mozfullscreenchange', fullscreenChange);
 document.addEventListener('MSFullscreenChange', fullscreenChange);
 
 function fullscreenChange() {
-    if (!isInFullScreen()) {
-        canvas.style.border = "solid 3px grey";
-    } else {
+    if (isInFullScreen()) {
         canvas.style.border = 'none';
+        touchScreenButtons(); // Sicherstellen, dass die Funktion hier aufgerufen wird
+    } else {
+        canvas.style.border = "solid 3px grey";
     }
 }

@@ -216,7 +216,8 @@ class Character extends MovableObject {
             ENDBOSS_GETS_HURT_LONG_CROW,
             ENDBOSS_GETS_HURT,
             BOTTLE_BREAKS,
-            THROW_BOTTLE_SOUND
+            THROW_BOTTLE_SOUND,
+            SNORING_SOUND
         ];
 
         allSounds.forEach(audio => {
