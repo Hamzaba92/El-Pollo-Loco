@@ -84,7 +84,7 @@ class Endboss extends MovableObject {
     alert() {
         this.alertInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_ATTACK);
-        }, 750);
+        }, 950);
 
         this.checkEndbossAreaInterval = setInterval(() => {
             if (this.endbossArea) {
@@ -92,16 +92,15 @@ class Endboss extends MovableObject {
                 clearInterval(this.checkEndbossAreaInterval);
                 clearInterval(this.idleTime);
             }
-        }, 100);
+        }, 300);
     }
 
     animateEnd() {
         if (!this.endbossDead) {
             if (!this.endbossArea) {
-
-            }else {
-                this.walkingAndJumping();
                 this.moveLeftEndboss();
+            } else {
+                this.walkingAndJumping();
             }
         } else {
             this.dead();
@@ -131,34 +130,35 @@ class Endboss extends MovableObject {
         }, 1000);
     }
 
-    stopMoving() {
-        clearInterval(this.moveLeftInterval);
-        this.moveLeftInterval = null;
-    }
-
     dead() {
-       this.speed = 0;
-        if (!this.endbossEnd && !this.deadAnimationPlayed) {
-            this.deadAnimationPlayed = true;
-        } else {
-            clearInterval(this.alertInterval);
-            clearInterval(this.checkEndbossAreaInterval);
-            clearInterval(this.moveLeftInterval);
-            clearInterval(this.idleTime);
-        }
+        this.endbossDead = true;
+        this.speed = 0;
+        this.cleanUpIntervalls();
+        this.playAnimation(this.IMAGES_DEATH);
+        setTimeout(() => {
+            this.showLastDeadImage();
+        }, 500); 
     }
 
     showLastDeadImage() {
         const lastDeadImage = this.IMAGES_DEATH[this.IMAGES_DEATH.length - 1];
         this.loadImage(lastDeadImage);
-        setTimeout(()=>{
+        setTimeout(() => {
             this.gameEnd();
-        }, 400)
+        }, 500);
     }
 
     gameEnd() {
         gameOver();
         this.stopAllSounds();
+        this.cleanUpIntervalls();
+    }
+
+    cleanUpIntervalls() {
+        clearInterval(this.alertInterval);
+        clearInterval(this.checkEndbossAreaInterval);
+        clearInterval(this.moveLeftInterval);
+        clearInterval(this.idleTime);
     }
 
     stopAllSounds() {
@@ -176,7 +176,7 @@ class Endboss extends MovableObject {
             BOTTLE_BREAKS,
             THROW_BOTTLE_SOUND
         ];
-    
+
         allSounds.forEach(audio => {
             if (!audio.paused) {
                 audio.pause();

@@ -34,28 +34,34 @@ class World {
 
         setInterval(() => {
             this.UpdateThrowObjects();
-        }, 180);
+        }, 145);
 
         setInterval(() => {
             this.checkCollisionsWithGround();
             this.checkCollisionsWithBottles()
             this.checkCollisionsWithCoins();
-            this.checkEndbossIsDead();
+            
         }, 15);
 
         setInterval(() => {
             this.ThrowableObjectAttack();
             this.checkBottleEndbossCollison();
+            this.checkCharacterJumpOnChicken();
+        }, 30);
+
+        setInterval(()=>{
             this.checkEndbossCollision();
             this.endbossAction();
-            this.checkCharacterJumpOnChicken();
-        }, 30)
+        }, 190);
+
+        setInterval(()=>{
+             this.checkEndbossIsDead();
+        }, 220);
 
     }
 
     UpdateThrowObjects() {
         if (this.keyboard.D && this.collectedBottles > 0) {
-
             let bottle = new throwableObject(this.character.x + 60, this.character.y + 70, this.character.otherDirection);
             this.throwableObject.push(bottle);
             this.bottleStatusbar.setPercentage(this.collectedBottles * 10);
@@ -113,7 +119,7 @@ class World {
                 this.character.jump();
                 setTimeout(() => {
                     this.level.enemies.splice(enemyIndex, 1);
-                }, 270);
+                }, 220);
             }
         });
     }
@@ -161,7 +167,7 @@ class World {
     checkEndbossIsDead() {
         if (this.endboss.endbossEnergy === 0) {
             this.endboss.endbossDead = true;
-            this.endboss.showLastDeadImage();
+                this.endboss.dead();
         }
     }
 
@@ -169,13 +175,13 @@ class World {
         if (this.character.x >= 3325 && !this.enteredendBosArea) {
             this.enteredendBosArea = true;
             this.endboss.endbossArea = true;
-            playAudio(ENDBOSS_GETS_HURT_LONG_CROW);
+            playAudio(ENDBOSS_GETS_HURT_LONG_CROW);  
         }
+    
         if (this.enteredendBosArea) {
             this.endboss.alert();
             this.endboss.animateEnd();
-        } else {
-            this.endboss.dead();
+            this.checkEndbossIsDead();  
         }
     }
 

@@ -64,7 +64,8 @@ function updateSoundEffects() {
         MIDDLE_CHICKEN_HURT,
         LITTLE_CHICKEN_HURT,
         ENDBOSS_GETS_HURT_LONG_CROW,
-        ENDBOSS_GETS_HURT
+        ENDBOSS_GETS_HURT,
+        SNORING_SOUND
     ];
 
     if (!soundActive) {

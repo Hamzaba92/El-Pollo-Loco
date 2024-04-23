@@ -6,12 +6,12 @@ function initLevel() {
         [
             new Chicken(1000),
             new Chicken(1500),
-            new Chicken(2600),
-            new Chicken(3000),
+            new Chicken(2830),
+            new Chicken(3150),
             new Chicken(3500),
             new littleChickens(700),
             new littleChickens(1200),
-            new littleChickens(1600),
+            new littleChickens(2300),
 
         ],
 
