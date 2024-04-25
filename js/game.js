@@ -2,6 +2,9 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+activeIntervals = [];
+activeTimeouts = [];
+
 window.addEventListener('DOMContentLoaded', function () {
     initLevel();
 });
@@ -23,34 +26,48 @@ function startGame() {
     }
 }
 
+function setGameInterval(fn, delay) {
+    const intervalId = setInterval(fn, delay);
+    activeIntervals.push(intervalId);
+    return intervalId;
+}
+
+function setGameTimeout(fn, delay) {
+    const timeoutId = setTimeout(fn, delay);
+    activeTimeouts.push(timeoutId);
+    return timeoutId;
+}
+
+function clearGameTimers() {
+    activeIntervals.forEach(clearInterval);
+    activeTimeouts.forEach(clearTimeout);
+    activeIntervals = [];
+    activeTimeouts = [];
+}
+
 function tryAgain() {
+    clearGameTimers();
+    updateBackgroundMusic();
+    init();
     document.getElementById('endScreen_img').style.display = 'none';
     document.getElementById('end_game').style.display = 'none';
     document.getElementById('when_pepe_died').style.display = 'none';
-    
     this.whenPepeDiedDisplayed = false;
-
-    for (let i = 1; i < 100000; i++) {
-        window.clearInterval(i);
-    }
-    init();
-    updateBackgroundMusic();
 }
 
 function gameOver() {
-    for (let i = 1; i < 100000; i++) {
-        window.clearInterval(i);
-    }
+    clearGameTimers();
     document.getElementById('endScreen_img').style.display = 'block';
     document.getElementById('end_game').style.display = 'block';
 }
 
-function youLost(){
-    if(!this.whenPepeDiedDisplayed){
+function youLost() {
+    if (!this.whenPepeDiedDisplayed) {
         this.whenPepeDiedDisplayed = true;
         playAudio(PEPE_LOSE);
         document.getElementById('when_pepe_died').style.display = 'block';
         document.getElementById('endScreen_img').style.display = 'none';
+        clearGameTimers();
     }
 }
 
@@ -120,57 +137,63 @@ function touchScreenButtons() {
     let jump = document.getElementById('jump');
     let throwbottle = document.getElementById('throwbottle');
 
-    leftarrow.addEventListener('touchstart', () => {
+    leftarrow.addEventListener('touchstart', (event) => {
+        event.preventDefault();
         keyboard.LEFT = true;
-        leftarrow.style.transform = 'scale(1.2)';
-    })
+        leftarrow.classList.add('active');
+    }, { passive: false });
 
-    leftarrow.addEventListener('touchend', () => {
+    leftarrow.addEventListener('touchend', (event) => {
+        event.preventDefault();
         keyboard.LEFT = false;
-        leftarrow.style.transform = 'scale(1.0)';
-    })
+        leftarrow.classList.remove('active');
+    }, { passive: false });
 
-    rightarrow.addEventListener('touchstart', () => {
+    rightarrow.addEventListener('touchstart', (event) => {
+        event.preventDefault();
         keyboard.RIGHT = true;
-        rightarrow.style.transform = 'scale(1.2)';
-    })
+        rightarrow.classList.add('active');
+    }, { passive: false });
 
-    rightarrow.addEventListener('touchend', () => {
+    rightarrow.addEventListener('touchend', (event) => {
+        event.preventDefault();
         keyboard.RIGHT = false;
-        rightarrow.style.transform = 'scale(1.0)';
-    })
+        rightarrow.classList.remove('active');
+    }, { passive: false });
 
-    jump.addEventListener('touchstart', () => {
+    jump.addEventListener('touchstart', (event) => {
+        event.preventDefault();
         keyboard.SPACE = true;
-        jump.style.transform = 'scale(1.2)';
-    })
+        jump.classList.add('active');
+    }, { passive: false });
 
-    jump.addEventListener('touchend', () => {
+    jump.addEventListener('touchend', (event) => {
+        event.preventDefault();
         keyboard.SPACE = false;
-        jump.style.transform = 'scale(1.0)';
-    })
+        jump.classList.remove('active');
+    }, { passive: false });
 
-    throwbottle.addEventListener('touchstart', () => {
+    throwbottle.addEventListener('touchstart', (event) => {
+        event.preventDefault();
         keyboard.D = true;
-        throwbottle.style.transform = 'scale(1.2)';
-    })
+        throwbottle.classList.add('active');
+    }, { passive: false });
 
-    throwbottle.addEventListener('touchend', () => {
+    throwbottle.addEventListener('touchend', (event) => {
+        event.preventDefault();
         keyboard.D = false;
-        throwbottle.style.transform = 'scale(1.0)';
-    })
+        throwbottle.classList.remove('active');
+    }, { passive: false });
 
     document.querySelectorAll('.mobile-buttons img').forEach(button => {
-        button.addEventListener('contextmenu', function (event) {
+        button.addEventListener('contextmenu', (event) => {
             event.preventDefault();
-        });
+        }, false);
     });
 
 }
 
 canvas = document.getElementById('canvas');
-
-
 
 function toggleFullScreen() {
     if (isInFullScreen()) {

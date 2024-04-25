@@ -26,9 +26,9 @@ BACKGROUND_SOUND.volume = 0.8;
 BACKGROUND_SOUND.loop = true;
 COLLECTED_BOTTLE.volume = 0.8;
 COLLECTED_COIN.volume = 0.5;
-WALKING_SOUND.volume = 0.7;
-MIDDLE_CHICKEN_HURT.volume = 0.5;
-LITTLE_CHICKEN_HURT.volume = 0.5;
+WALKING_SOUND.volume = 0.4;
+MIDDLE_CHICKEN_HURT.volume = 0.4;
+LITTLE_CHICKEN_HURT.volume = 0.4;
 PEPE_LOSE.playbackRate = 1.7;
 
 function toggleBackgroundMusic() {

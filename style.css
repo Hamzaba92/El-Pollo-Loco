@@ -15,8 +15,13 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     margin: 0;
+    padding: 0;
     height: 100vh;
-    overflow: hidden;
+    overflow: auto;
+}
+
+.mobile-buttons img {
+    touch-action: auto;
 }
 
 h1 {
@@ -191,6 +196,13 @@ canvas {
     width: 38px;
 }
 
+.active {
+    transform: scale(1.2);
+}
+
+#btn_walk_left, #btn_walk_right, #jump, #throwbottle {
+    transition: transform 0.1s ease-in-out;
+}
 
 /**Landscape-mod**/
 @media only screen and (max-height: 480px) {
@@ -211,9 +223,9 @@ canvas {
     }
 
     .youLosePepe {
-        height: 290px!important;
-        width: 100%!important;
-        padding-top: 2.5px!important;
+        height: 290px !important;
+        width: 100% !important;
+        padding-top: 2.5px !important;
     }
 
     .icons-above-canvas {
@@ -236,11 +248,11 @@ canvas {
     #start_game {
         position: absolute;
         height: 59px;
-        width: 180px;
+        width: 185px;
         top: 15%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 38px;
+        font-size: 29px;
         font-family: 'Zabars';
         color: black;
         border-radius: 12px;
@@ -254,19 +266,18 @@ canvas {
     #endScreen_img {
         height: 80vh;
         width: 100%;
-        padding-left: 2px;
+        padding-left: 3px;
         padding-top: 2.4px;
     }
-
 
     #end_game {
         position: absolute;
         height: 59px;
-        width: 193px;
+        width: 203px;
         top: 15%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 38px;
+        font-size: 29px;
         font-family: 'Zabars';
         color: black;
         border-radius: 12px;
@@ -302,16 +313,12 @@ canvas {
     canvas {
         width: 100%;
     }
-
-   
 }
-
 
 @media (max-width:790px) {
     .game-instruction {
         font-size: 24px;
     }
-
 }
 
 @media (max-width: 700px) {
@@ -342,6 +349,5 @@ canvas {
         height: 248px;
         width: 248px;
     }
-
 
 }

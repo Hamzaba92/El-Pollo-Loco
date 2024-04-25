@@ -8,9 +8,9 @@ class littleChickens extends Chicken {
     deadChicken = false;
 
     offset = {
-        top: 2,  
-        left: -3, 
-        right: -3, 
+        top: 2,
+        left: -3,
+        right: -3,
         bottom: 1
     };
 
@@ -42,7 +42,7 @@ class littleChickens extends Chicken {
     }
 
     playAliveChicken() {
-        this.walkingIntervalLittleChicken = setInterval(() => {
+        this.walkingIntervalLittleChicken = setGameInterval(() => {
             if (!this.deadChicken) {
                 this.playAnimation(this.LITTLE_CHICKENS);
             }
@@ -50,7 +50,7 @@ class littleChickens extends Chicken {
     }
 
     playDeadChickenAnimation() {
-        let chickenInterval = setInterval(() => {
+        let chickenInterval = setGameInterval(() => {
             if (this.deadChicken) {
                 this.speed = 0;
                 clearInterval(this.walkingIntervalLittleChicken);

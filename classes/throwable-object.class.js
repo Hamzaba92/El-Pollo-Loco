@@ -4,14 +4,14 @@ class throwableObject extends MovableObject {
     isBreaking = false;
     isShooted = false;
     deletable = false;
-    
+
     SALSA_BOTTLES_IN_THE_AIR = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
     ];
-    
+
     IMAGES_BOTTLE_SPLASH = [
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
@@ -42,16 +42,16 @@ class throwableObject extends MovableObject {
         this.throwedBottleInTheAir();
     }
 
-    
+
     throw() {
         this.speedY = 27;
         this.applyGravity();
         playAudio(THROW_BOTTLE_SOUND);
-        setInterval(() => {
+        setGameInterval(() => {
             this.x += 10;
         }, 25);
         this.checkIfBroken();
-        let moveInterval = setInterval(() => {
+        let moveInterval = setGameInterval(() => {
             if (this.otherDirection) {
                 this.x += -40;
                 if (this.deletable) {
@@ -62,18 +62,17 @@ class throwableObject extends MovableObject {
     }
 
     checkIfBroken() {
-        // Logik zur Überprüfung, ob die Flasche zerbrochen ist oder ihr Ziel erreicht hat
-        let checkInterval = setInterval(() => {
-            if (this.deletable) { 
+        let checkInterval = setGameInterval(() => {
+            if (this.deletable) {
                 clearInterval(checkInterval);
-                this.character.isThrowing = false; // Setze die Flag zurück, wenn die Flasche "fertig" ist
+                this.character.isThrowing = false;
             }
         }, 50);
     }
 
     breakAndSplash() {
         this.isBreaking = true;
-        this.playAnimation(this.IMAGES_BOTTLE_SPLASH); 
+        this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
         playAudio(BOTTLE_BREAKS);
         this.speedY = 6.5;
     }
@@ -86,11 +85,11 @@ class throwableObject extends MovableObject {
     }
 
     throwedBottleInTheAir() {
-       let resetAnimation = setInterval(() => {
+        let resetAnimation = setGameInterval(() => {
             if (!this.isBreaking) {
                 this.playAnimation(this.SALSA_BOTTLES_IN_THE_AIR);
             } else {
-               clearInterval(resetAnimation);
+                clearInterval(resetAnimation);
             }
         }, 60);
     }

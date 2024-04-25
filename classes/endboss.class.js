@@ -1,8 +1,8 @@
 class Endboss extends MovableObject {
 
-    y = 100;
-    height = 350;
-    width = 220;
+    y = 15;
+    height = 450;
+    width = 240;
     x = 3800;
     endbossArea = false;
     endbossDead = false;
@@ -14,14 +14,11 @@ class Endboss extends MovableObject {
     speedX = 0;
 
     offset = {
-        top: 65,
-        left: 5,
-        right: 5,
+        top: 55,
+        left: 0,
+        right: 0,
         bottom: 10
     };
-
-    ENDBOSS_GETS_HURT_LONG_CROW = new Audio('audio/endboss_hurt.mp3');
-    ENDBOSS_GETS_HURT = new Audio('audio/endboss_hurt2.mp3');
 
     IMAGES_IDLE = [
         './img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -78,11 +75,11 @@ class Endboss extends MovableObject {
     }
 
     alert() {
-        this.alertInterval = setInterval(() => {
-            this.playAnimation(this.IMAGES_ATTACK);
-        }, 950);
+        this.alertInterval = setGameInterval(() => {
+            this.playAnimation(this.IMAGES_WALK);
+        }, 600);
 
-        this.checkEndbossAreaInterval = setInterval(() => {
+        this.checkEndbossAreaInterval = setGameInterval(() => {
             if (this.endbossArea) {
                 clearInterval(this.alertInterval);
                 clearInterval(this.checkEndbossAreaInterval);
@@ -131,22 +128,24 @@ class Endboss extends MovableObject {
         this.speed = 0;
         this.cleanUpIntervalls();
         this.playAnimation(this.IMAGES_DEATH);
-        setTimeout(() => {
+        setGameTimeout(() => {
             this.showLastDeadImage();
-        }, 500); 
+        }, 550);
+
     }
 
     showLastDeadImage() {
         const lastDeadImage = this.IMAGES_DEATH[this.IMAGES_DEATH.length - 1];
         this.loadImage(lastDeadImage);
-        setTimeout(() => {
+        setGameTimeout(() => {
             this.gameEnd();
-        }, 500);
+        }, 550);
     }
 
+
     gameEnd() {
-        gameOver();
         this.stopAllSounds();
+        gameOver();
         this.cleanUpIntervalls();
     }
 

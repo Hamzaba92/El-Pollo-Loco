@@ -100,7 +100,7 @@ class Character extends MovableObject {
     }
 
     setupMovementControls() {
-        setInterval(() => {
+        setGameInterval(() => {
             this.pauseAudio(WALKING_SOUND);
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
@@ -149,27 +149,27 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
         this.pauseAudio(WALKING_SOUND);
         this.stopAllSounds();
-        setTimeout(() => this.checkState(), 100); 
+        setGameTimeout(() => this.checkState(), 100); 
         gameOver();
     }
     
     handleHurtState() {
         this.playAnimation(this.IMAGES_HURT);
         playAudio(HURT_SOUND);
-        setTimeout(() => this.checkState(), 220);   
+        setGameTimeout(() => this.checkState(), 220);   
     }
     
     handleJumpingState() {
         if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMPING);
         }
-        setTimeout(() => this.checkState(), 116);   
+        setGameTimeout(() => this.checkState(), 116);   
     }
     
     handleWalkingState(currentTime) {
         this.playAnimation(this.IMAGES_WALKING);
         this.idleTime = currentTime;
-        setTimeout(() => this.checkState(), 82);  
+        setGameTimeout(() => this.checkState(), 82);  
     }
     
     handleIdleStates(currentTime) {
@@ -180,12 +180,12 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_SLEEPING);
             playAudio(SNORING_SOUND);
         }
-        setTimeout(() => this.checkState(), 170); 
+        setGameTimeout(() => this.checkState(), 170); 
     }
     
     handleDefaultIdleState() {
         this.playAnimation(this.IMAGES_IDLE);
-        setTimeout(() => this.checkState(), 145);    
+        setGameTimeout(() => this.checkState(), 145);    
         this.pauseAudio(SNORING_SOUND);
     }
     

@@ -28,41 +28,39 @@ class World {
     }
 
     run() {
-        setInterval(() => {
+        setGameInterval(() => {
             this.checkCollisions();
         }, 270);
 
-        setInterval(() => {
+        setGameInterval(() => {
             this.UpdateThrowObjects();
         }, 100);
 
-        setInterval(() => {
+        setGameInterval(() => {
             this.checkCollisionsWithGround();
             this.checkCollisionsWithBottles()
             this.checkCollisionsWithCoins();
-
         }, 15);
 
-        setInterval(() => {
+        setGameInterval(() => {
             this.ThrowableObjectAttack();
             this.checkBottleEndbossCollison();
             this.checkCharacterJumpOnChicken();
-        }, 20);
-
-        setInterval(() => {
             this.checkEndbossCollision();
+        }, 10);
+
+        setGameInterval(() => {
             this.endbossAction();
         }, 190);
 
-        setInterval(() => {
+        setGameInterval(() => {
             this.checkEndbossIsDead();
         }, 220);
-
     }
 
     UpdateThrowObjects() {
         if (this.keyboard.D && this.collectedBottles > 0 && !this.character.isThrowing) {
-            this.character.isThrowing = true; // Setze die Flag, wenn eine Flasche geworfen wird
+            this.character.isThrowing = true;
             let bottle = new throwableObject(this.character.x + 60, this.character.y + 70, this.character.otherDirection, this.character);
             this.throwableObject.push(bottle);
             this.bottleStatusbar.setPercentage(this.collectedBottles * 10);
@@ -71,7 +69,6 @@ class World {
             this.character.isThrowing = false;
         }
     }
-
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -121,7 +118,7 @@ class World {
             if (this.character.isColliding(enemy) && !enemy.deadChicken && this.character.isAboveGround()) {
                 enemy.deadChicken = true;
                 this.character.jump();
-                setTimeout(() => {
+                setGameTimeout(() => {
                     this.level.enemies.splice(enemyIndex, 1);
                 }, 220);
             }
@@ -136,7 +133,7 @@ class World {
                     enemy.toBeRemoved = true;
                     thrObjct.toBeRemoved = true;
 
-                    setTimeout(() => {
+                    setGameTimeout(() => {
                         this.throwableObject = this.throwableObject.filter(obj => !obj.toBeRemoved);
                         this.level.enemies = this.level.enemies.filter(e => !e.toBeRemoved);
                     }, 270);
@@ -161,7 +158,7 @@ class World {
                 bottle.breakAndSplash();
                 playAudio(ENDBOSS_GETS_HURT);
                 this.endBossStatusbar.setPercentage(this.endboss.endbossEnergy);
-                setTimeout(() => {
+                setGameTimeout(() => {
                     this.throwableObject.splice(bottleIndex, 1);
                 }, 200);
             }
@@ -171,7 +168,7 @@ class World {
     checkEndbossIsDead() {
         if (this.endboss.endbossEnergy === 0) {
             this.endboss.endbossDead = true;
-            setTimeout(()=>{
+            setGameTimeout(()=>{
                 playAudio(ENDBOSS_DEFEATED);
             }, 40)
             this.endboss.dead();

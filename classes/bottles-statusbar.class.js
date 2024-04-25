@@ -41,8 +41,6 @@ class StatusbarBottle extends DrawableObjects {
 
     resolveImageIndex() {
         return Math.min(Math.floor(this.percentage / 20), this.IMAGES_BOTTLES.length - 1);
-
     }
-
 
 }
