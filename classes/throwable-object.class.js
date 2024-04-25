@@ -42,7 +42,10 @@ class throwableObject extends MovableObject {
         this.throwedBottleInTheAir();
     }
 
-
+    /**
+     * Handle the bottle in the air.
+     * Check if the bottle is on the ground.
+     */
     throw() {
         this.speedY = 27;
         this.applyGravity();
@@ -60,7 +63,9 @@ class throwableObject extends MovableObject {
             }
         }, 50);
     }
-
+    /**
+     * Check if the bottle is throwing or not.
+     */
     checkIfBroken() {
         let checkInterval = setGameInterval(() => {
             if (this.deletable) {
@@ -70,6 +75,10 @@ class throwableObject extends MovableObject {
         }, 50);
     }
 
+    /**
+     * Play's the Animation when the bottle breaks.
+     * Play's a splashing sound
+     */
     breakAndSplash() {
         this.isBreaking = true;
         this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
@@ -77,6 +86,10 @@ class throwableObject extends MovableObject {
         this.speedY = 6.5;
     }
 
+    /**
+     * Checks if the animation of bottle splash images has finished.
+     * @returns {boolean} Returns true if the current image is the last one in the sequence, otherwise false.
+     */
     animationFinished() {
         if (this.IMAGES_BOTTLE_SPLASH && this.IMAGES_BOTTLE_SPLASH.length > 0) {
             return this.currentImageIndex === this.IMAGES_BOTTLE_SPLASH.length - 1;
@@ -84,6 +97,9 @@ class throwableObject extends MovableObject {
         return false;
     }
 
+    /**
+     * Initiates the animation of throwing bottles in the air, repeatedly playing the animation until a break condition is met.-
+     */
     throwedBottleInTheAir() {
         let resetAnimation = setGameInterval(() => {
             if (!this.isBreaking) {

@@ -36,6 +36,11 @@ class Chicken extends MovableObject {
         this.speed = 0.15 + Math.random() * 0.7;
     }
 
+    /**
+    * Initiates the animation sequence for the middle chicken.
+    * Moves the middle chicken to the left, initiates a walking animation loop,
+    * and checks if the middle chicken has died.
+    */
     animate() {
         this.moveLeft();
         this.walkingInterval = setGameInterval(() => {
@@ -46,6 +51,9 @@ class Chicken extends MovableObject {
         this.middleChickenDied();
     }
 
+    /**
+     * Checks if the middle chicken has died and initiates the death animation sequence if so.
+     */
     middleChickenDied() {
         let chickenInterval = setGameInterval(() => {
             if (this.deadChicken) {

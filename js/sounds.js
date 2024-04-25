@@ -31,6 +31,11 @@ MIDDLE_CHICKEN_HURT.volume = 0.4;
 LITTLE_CHICKEN_HURT.volume = 0.4;
 PEPE_LOSE.playbackRate = 1.7;
 
+/**
+ * Toggles the background music and all sound effects on and off.
+ * This function switches the global sound control flag, updates the music playback,
+ * and the state of sound effects based on the current flag state.
+ */
 function toggleBackgroundMusic() {
     soundActive = !soundActive;
     audioEffectsActive = soundActive;
@@ -38,10 +43,15 @@ function toggleBackgroundMusic() {
     updateSoundEffects();
 }
 
+/**
+ * Updates the background music playback and the sound icon on the UI based on the current sound state.
+ * If sound is ON, it plays the background music and shows the "Sound-ON" icon.
+ * If sound is OFF, it pauses the music and displays the "Sound-OFF" icon.
+ */
 function updateBackgroundMusic() {
     let toggleImg = document.getElementById('toggle_sound_btn');
     if (soundActive) {
-        BACKGROUND_SOUND.play().catch(e => console.error("Fehler beim Abspielen der Hintergrundmusik: ", e));
+        BACKGROUND_SOUND.play().catch(e => console.error("Error playing background music: ", e));
         toggleImg.src = './img/sound_on.png';
     } else {
         BACKGROUND_SOUND.pause();
@@ -49,14 +59,24 @@ function updateBackgroundMusic() {
     }
 }
 
+/**
+ * Plays an audio element if sound is enabled.
+ * @param {HTMLAudioElement} audio - The audio element to play.
+ * This function checks if both sound and audio effects are active. If so, it attempts to play the provided audio element
+ * if it is currently paused. Errors during playback are logged to the console.
+ */
 function playAudio(audio) {
     if (soundActive && audioEffectsActive) {
         if (audio.paused) {
-            audio.play().catch(e => console.error("Fehler beim Abspielen des Sounds: ", e));
+            audio.play().catch(e => console.error("Error playing the audio: ", e));
         }
     }
 }
 
+/**
+ * Immediately stops all sound effects if the sound is inactive.
+ * This function iterates through a list of predefined audio elements and pauses each one, effectively muting the game.
+ */
 function updateSoundEffects() {
     const allSounds = [
         COLLECTED_BOTTLE,
@@ -77,6 +97,10 @@ function updateSoundEffects() {
         });
     }
 
+    /**
+    * Pauses the provided audio element if it is currently playing.
+    * @param {HTMLAudioElement} audio - The audio element to pause.
+    */
     function pauseAudio(audio) {
         if (!audio.paused) {
             audio.pause();

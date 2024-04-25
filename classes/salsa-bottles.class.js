@@ -27,6 +27,9 @@ class SalsaBottles extends MovableObject {
         this.bottlesRotate();
     }
 
+    /**
+     * Manage the rotating animation of the grounded Bottles
+     */
     bottlesRotate() {
         setGameInterval(() => {
             this.playAnimation(this.IMAGE_SALSABOTTLES_ONGROUND)

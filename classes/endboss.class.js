@@ -74,6 +74,10 @@ class Endboss extends MovableObject {
         this.isAboveGround = true;
     }
 
+    /**
+    * Initiates an alert animation loop for the endboss.
+    * Stops the animation loop when entering the endboss area.
+    */
     alert() {
         this.alertInterval = setGameInterval(() => {
             this.playAnimation(this.IMAGES_WALK);
@@ -88,6 +92,11 @@ class Endboss extends MovableObject {
         }, 300);
     }
 
+    /**
+    * Initiates the end animation sequence for the character based on game state.
+    * Moves the character towards the endboss if it's alive and not in the endboss area,
+    * otherwise, initiates the walking and jumping animation.
+    */
     animateEnd() {
         if (!this.endbossDead) {
             if (!this.endbossArea) {
@@ -100,6 +109,10 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+    * Initiates the walking and jumping animation sequence for the endboss character.
+    * Moves the endboss character left, adjusts its moving speed, and clears the idle time.
+    */
     walkingAndJumping() {
         this.moveLeftEndboss();
         this.movingSpeedEndboss();
@@ -107,6 +120,9 @@ class Endboss extends MovableObject {
         this.idleTime = null;
     }
 
+    /**
+     * Moves the endboss character to the left at a constant interval, triggering a walking animation. 
+     */
     moveLeftEndboss() {
         if (this.moveLeftInterval === null) {
             this.moveLeftInterval = setInterval(() => {
@@ -116,6 +132,9 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * Sets the moving speed of the endboss character and resets it after a specified time. 
+     */
     movingSpeedEndboss() {
         this.speedX = 30;
         setTimeout(() => {
@@ -123,6 +142,11 @@ class Endboss extends MovableObject {
         }, 1000);
     }
 
+    /**
+    * Initiates the death sequence for the endboss character.
+    * Sets the endboss character as dead, stops its movement, cleans up intervals,
+    * plays the death animation, and schedules the display of the last dead image.
+    */
     dead() {
         this.endbossDead = true;
         this.speed = 0;
@@ -134,6 +158,10 @@ class Endboss extends MovableObject {
 
     }
 
+    /**
+    * Displays the last frame of the death animation.
+    * Loads and displays the last dead image, then schedules the end of the game.
+    */
     showLastDeadImage() {
         const lastDeadImage = this.IMAGES_DEATH[this.IMAGES_DEATH.length - 1];
         this.loadImage(lastDeadImage);
@@ -142,13 +170,21 @@ class Endboss extends MovableObject {
         }, 550);
     }
 
-
+    /**
+    * Initiates the end of the game.
+    * Stops all sounds, triggers the game over function, and cleans up intervals.
+    */
     gameEnd() {
         this.stopAllSounds();
         gameOver();
         this.cleanUpIntervalls();
     }
 
+    /**
+    * Cleans up all active intervals used in the game.
+    * Clears intervals related to alert animations, endboss area checks, endboss movement,
+    * and idle time tracking.
+    */
     cleanUpIntervalls() {
         clearInterval(this.alertInterval);
         clearInterval(this.checkEndbossAreaInterval);
@@ -156,6 +192,10 @@ class Endboss extends MovableObject {
         clearInterval(this.idleTime);
     }
 
+    /**
+    * Stops playback of all active sounds used in the game.
+    * Pauses all sounds in the game's audio library to ensure silence.
+    */
     stopAllSounds() {
         const allSounds = [
             BACKGROUND_SOUND,

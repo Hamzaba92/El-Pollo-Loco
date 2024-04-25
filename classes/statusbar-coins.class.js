@@ -22,6 +22,10 @@ class StatusbarCoins extends MovableObject {
         this.setPercentage(0);
     }
 
+    /**
+   * Sets the percentage value and updates the image based on the calculated index.
+   * @param {number} - The percentage value to set, typically influencing the image selection.
+   */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_COINS[this.resolveImageIndex()];
@@ -29,6 +33,10 @@ class StatusbarCoins extends MovableObject {
 
     }
 
+    /**
+    * Increases the coin amount by 10.
+    * If the resulting coin amount exceeds 100, sets it to 100.
+    */
     collectCoin() {
         this.coinAmount += 10;
         if (this.coinAmount > 100) {
@@ -36,6 +44,10 @@ class StatusbarCoins extends MovableObject {
         }
     }
 
+    /**
+     * 
+     * @returns {number} The index of the image to be displayed, based on the current percentage.
+     */
     resolveImageIndex() {
         if (this.percentage == 0) {
             return 0;
@@ -52,5 +64,5 @@ class StatusbarCoins extends MovableObject {
         }
         return Math.min(Math.floor(this.percentage / 20), this.IMAGES_COINS.length - 1);
     }
-    
+
 }

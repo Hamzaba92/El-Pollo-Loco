@@ -26,6 +26,9 @@ class Coins extends MovableObject {
         this.animateCoins();
     }
 
+    /**
+     * animate the placed coins on the map
+     */
     animateCoins() {
         setGameInterval(() => {
             this.playAnimation(this.IMAGES_COIN);

@@ -99,6 +99,15 @@ class Character extends MovableObject {
         this.setupAnimationLoop();
     }
 
+    /**
+    * Sets up movement controls for the character.
+    * Initiates an interval to continuously check keyboard input and move the character accordingly.
+    * - Pauses walking sound if no movement keys are pressed.
+    * - Moves the character right if the right arrow key is pressed and the character is within the level bounds.
+    * - Moves the character left if the left arrow key is pressed and the character is within the level bounds.
+    * - Initiates a jump if the spacebar is pressed and the character is not already above ground.
+    * - Adjusts the camera position based on the character's position for smooth scrolling.
+    */
     setupMovementControls() {
         setGameInterval(() => {
             this.pauseAudio(WALKING_SOUND);
@@ -120,10 +129,25 @@ class Character extends MovableObject {
 
     }
 
+    /**
+    * Sets up the animation loop for the character.
+    * Calls the checkState function to continuously monitor the character's state and handle animations and actions accordingly.
+    */
     setupAnimationLoop() {
         this.checkState();
     }
     
+    /**
+    * Checks the current state of the character and triggers appropriate actions based on conditions.
+    * - `currentTime`: Current timestamp used for time calculations.
+    * - `timeSinceLastMove`: Time elapsed since the character's last movement.
+    * - If the character is dead and the death display flag is not set, triggers the dead state handling and game over.
+    * - If the character is hurt, triggers the hurt state handling.
+    * - If the character is above ground, triggers the jumping state handling.
+    * - If the character is moving left or right, triggers the walking state handling.
+    * - If the character has been idle for more than 5 seconds, triggers the idle state handling.
+    * - Otherwise, triggers the default idle state handling.
+    */
     checkState() {
         const currentTime = new Date().getTime();
         const timeSinceLastMove = currentTime - this.idleTime;
@@ -145,6 +169,14 @@ class Character extends MovableObject {
         }
     }
     
+    /**
+    * Handles the dead state of the character.
+     * - Plays the dead animation.
+     * - Pauses the walking sound.
+     * - Stops all sounds.
+     * - Sets a timeout to check the character's state after a delay.
+     * - Triggers the game over function.
+     */
     handleDeadState() {
         this.playAnimation(this.IMAGES_DEAD);
         this.pauseAudio(WALKING_SOUND);
@@ -153,12 +185,23 @@ class Character extends MovableObject {
         gameOver();
     }
     
+    /**
+    * Handles the hurt state of the character.
+    * - Plays the hurt animation.
+    * - Plays the hurt sound.
+    * - Sets a timeout to check the character's state after a delay.
+    */
     handleHurtState() {
         this.playAnimation(this.IMAGES_HURT);
         playAudio(HURT_SOUND);
         setGameTimeout(() => this.checkState(), 220);   
     }
     
+    /**
+    * Handles the jumping state of the character.
+    * - Plays the jumping animation if the character is above ground.
+    * - Sets a timeout to check the character's state after a delay.
+    */
     handleJumpingState() {
         if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMPING);
@@ -166,12 +209,26 @@ class Character extends MovableObject {
         setGameTimeout(() => this.checkState(), 116);   
     }
     
+    /**
+    * Handles the walking state of the character.
+    * - Plays the walking animation.
+    * - Updates the idle time to the current time.
+    * - Sets a timeout to check the character's state after a short delay.
+    * @param {number} currentTime - The current timestamp used for time calculations.
+    */
     handleWalkingState(currentTime) {
         this.playAnimation(this.IMAGES_WALKING);
         this.idleTime = currentTime;
         setGameTimeout(() => this.checkState(), 82);  
     }
     
+    /**
+    * Handles the idle states of the character.
+    * - If the 'D' key is pressed, plays the idle animation and updates the idle time.
+    * - If the 'D' key is not pressed, plays the sleeping animation and triggers snoring sound.
+    * - Sets a timeout to check the character's state after a delay.
+    * @param {number} currentTime - The current timestamp used for time calculations.
+    */
     handleIdleStates(currentTime) {
         if (this.world.keyboard.D) {
             this.playAnimation(this.IMAGES_IDLE);
@@ -183,6 +240,12 @@ class Character extends MovableObject {
         setGameTimeout(() => this.checkState(), 170); 
     }
     
+    /**
+    * Handles the default idle state of the character.
+    * - Plays the idle animation.
+    * - Sets a timeout to check the character's state after a delay.
+    * - Pauses the snoring sound.
+    */
     handleDefaultIdleState() {
         this.playAnimation(this.IMAGES_IDLE);
         setGameTimeout(() => this.checkState(), 145);    

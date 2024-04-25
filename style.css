@@ -84,7 +84,6 @@ canvas {
 
 .startScreen {
     position: absolute;
-
 }
 
 #startScreen_img {
@@ -222,10 +221,11 @@ canvas {
         display: none;
     }
 
-    .youLosePepe {
-        height: 290px !important;
-        width: 100% !important;
-        padding-top: 2.5px !important;
+    #endScreen_img {
+        height: 80vh;
+        width: 100%;
+        padding-left: 3px;
+        padding-top: 2.4px;
     }
 
     .icons-above-canvas {
@@ -264,6 +264,13 @@ canvas {
     }
 
     #endScreen_img {
+        height: 80vh;
+        width: 100%;
+        padding-left: 3px;
+        padding-top: 2.4px;
+    }
+
+    #when_pepe_died{
         height: 80vh;
         width: 100%;
         padding-left: 3px;
@@ -343,6 +350,7 @@ canvas {
         font-size: 60px;
         text-shadow: 2px 1px 4px rgba(0, 0, 0, 0.8);
     }
+}
 
     .rotate-your-phone img {
         padding-top: 150px;
@@ -350,4 +358,74 @@ canvas {
         width: 248px;
     }
 
+    /*iphone 13 pro max*/
+    @media only screen 
+  and (device-width: 428px) 
+  and (device-height: 926px) 
+  and (-webkit-device-pixel-ratio: 3) {
+ 
+    #when_pepe_died {
+    height: 327px;
+    width: 530px;
+    padding-top: 2px;
+    }
+
+    #endScreen_img{
+    height: 327px;
+    width: 530px;
+    padding-top: 2px;
+    }
+
+    #startScreen_img {
+        height: 80vh;
+        width: 99%;
+    }
 }
+
+/* Iphone SE */
+@media only screen 
+  and (device-height: 667px) 
+  and (-webkit-device-pixel-ratio: 2) {
+    .rotate-your-phone {
+        display: flex;
+        position: fixed;
+        flex-direction: column;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 999;
+        align-items: center;
+        justify-content: center;
+        letter-spacing: 3px;
+        background-image: url(./img_design/8.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        text-align: center;
+        color: black;
+        font-size: 60px;
+        text-shadow: 2px 1px 4px rgba(0, 0, 0, 0.8);
+    }
+}
+
+/**Landscape-mod**/
+@media only screen and (max-height: 376px) {
+    .rotate-your-phone{
+    background-image: none;
+    }
+
+    .rotate-your-phone span{
+        display: none;
+    }
+
+    .rotate-your-phone img{
+        display: none;
+    }
+}
+
+
+
+
+
+

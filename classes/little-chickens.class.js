@@ -35,12 +35,18 @@ class littleChickens extends Chicken {
         this.animate();
     }
 
+    /**
+     * Orchestrates the animation of the chicken by calling appropriate animation functions.
+     */
     animate() {
         this.moveChickenToLeft();
         this.playAliveChicken();
         this.playDeadChickenAnimation()
     }
 
+    /**
+     * Initiates the animation loop for the alive chicken.
+     */
     playAliveChicken() {
         this.walkingIntervalLittleChicken = setGameInterval(() => {
             if (!this.deadChicken) {
@@ -49,6 +55,9 @@ class littleChickens extends Chicken {
         }, 200);
     }
 
+    /**
+     * Initiates the animation loop for the dead chicken.
+     */
     playDeadChickenAnimation() {
         let chickenInterval = setGameInterval(() => {
             if (this.deadChicken) {
@@ -62,6 +71,9 @@ class littleChickens extends Chicken {
         }, 250);
     }
 
+    /**
+     * Moves the chicken to the left.
+     */
     moveChickenToLeft() {
         this.moveLeft();
     }
